@@ -10,7 +10,7 @@ import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
-    <div className="app">
+    <div className="app" style={{ paddingTop: "1px" }}>
       <NavBar />
       <Hero />
       <About />
@@ -22,5 +22,6 @@ const App = () => {
     </div>
   );
 };
+
 
 export default App;
