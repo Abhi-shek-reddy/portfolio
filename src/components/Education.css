@@ -1,0 +1,58 @@
+.education-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.education-heading {
+  font-size: 32px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: #333;
+}
+
+.education-grid-item {
+  display: flex;
+  justify-content: center;
+}
+
+.education-card {
+  width: 100%;
+  max-width: 330px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-6px);
+}
+
+.education-course {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1976d2;
+  margin-bottom: 6px;
+}
+
+.education-duration {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 6px;
+  gap: 4px;
+  justify-content: center;
+}
+
+.education-university {
+  font-weight: 600;
+  color: #444;
+}
+
+.education-cgpa {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
