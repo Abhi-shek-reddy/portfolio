@@ -31,9 +31,9 @@ const App: React.FC<AppProps> = ({ mode, setMode }) => {
       <NavBar mode={mode} setMode={setMode} />
       <Home />
       <About />
+      <Experience />
       <Skills />
       <SoftSkills />
-      <Experience />
       <Education />
       <Projects />
       <Contact />

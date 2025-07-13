@@ -1,28 +1,19 @@
-.timeline {
-  position: relative;
-  margin-left: 20px;
-  padding-left: 20px;
-  border-left: 3px solid #1976d2;
+/* Hover glow + lift effect for experience cards */
+
+.experience-card-wrapper {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
 }
 
-.timeline-item {
-  position: relative;
-  margin-bottom: 40px;
+.experience-card-wrapper:hover {
+  transform: translateY(-6px);
 }
 
-.timeline-dot {
-  width: 16px;
-  height: 16px;
-  background-color: #1976d2;
-  border-radius: 50%;
-  position: absolute;
-  left: -28px;
-  top: 5px;
+.experience-animated-card {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.timeline-card {
-  padding: 20px;
-  margin-left: 20px;
-  border-radius: 8px;
-  background-color: #fefefe;
+.experience-animated-card:hover {
+  box-shadow: 0 0 15px 2px var(--glow-color);
+  border-color: var(--glow-color);
 }

@@ -4,12 +4,12 @@ import {
   Typography,
   Card,
   CardContent,
-  Grid,
   Divider,
+  useTheme,
 } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import './Education.css';
+import './Education.css'; // Add this line if not already included
 
 const educationData = [
   {
@@ -17,55 +17,94 @@ const educationData = [
     duration: '2024 - 2026',
     university: 'Wilmington University',
     cgpa: '3.8 / 4.0',
+    description:
+      'Currently pursuing a Master’s program with a specialization in Web Design. Gaining in-depth knowledge of advanced UI/UX, frontend frameworks, backend integration, and responsive web development. Also exploring database design and project-based collaboration.',
   },
   {
     course: 'BTech in Computer Science',
     duration: '2019 - 2023',
     university: 'Lovely Professional University',
     cgpa: '7.2 / 10',
+    description:
+      'Built strong foundational knowledge in data structures, object-oriented programming, computer networks, and software engineering. Worked on academic projects and explored frontend development using React during the final year.',
   },
   {
     course: 'Intermediate (MPC)',
     duration: '2017 - 2019',
     university: 'Sri Chaitanya Junior College',
     cgpa: '9.5 / 10',
+    description:
+      'Focused on core mathematics, physics, and chemistry subjects to prepare for engineering entrance exams. Built a strong analytical mindset and problem-solving skills.',
   },
 ];
 
 const Education: React.FC = () => {
-  return (
-    <Box className="education-section">
-      <Typography className="education-heading">🎓 Education</Typography>
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
+  const borderColor = isDarkMode ? '#00fa43' : '#00bcd4';
 
-      <Grid container spacing={4} justifyContent="center">
-        {educationData.map((edu, index) => (
-          <Grid item xs={12} sm={8} md={4} key={index} className="education-grid-item">
-            <Card className="education-card">
+  return (
+    <Box sx={{ px: 4, py: 6 }}>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{
+          fontWeight: 'bold',
+          mb: 4,
+          color: borderColor,
+        }}
+      >
+        🎓 Education
+      </Typography>
+
+      {educationData.map((edu, index) => (
+        <Box key={index} sx={{ mb: 4 }}>
+          <Box className="animated-card-wrapper">
+            <Card
+              className="animated-card"
+              variant="outlined"
+              sx={{
+                backgroundColor: isDarkMode ? '#000' : '#18182bff',
+                color: isDarkMode ? '#fff' : 'white',
+                borderColor,
+              }}
+            >
               <CardContent>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
                   <SchoolIcon color="primary" />
-                  <Typography variant="subtitle1" className="education-university">
+                  <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                     {edu.university}
                   </Typography>
                 </Box>
 
-                <Typography className="education-course">{edu.course}</Typography>
+                <Typography sx={{ mb: 1 }}>{edu.course}</Typography>
 
-                <Divider sx={{ my: 1 }} />
+                <Divider sx={{ my: 1, borderColor }} />
 
-                <Box className="education-duration">
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
                   <CalendarMonthIcon fontSize="small" color="action" />
                   <Typography variant="body2">{edu.duration}</Typography>
                 </Box>
 
-                <Typography className="education-cgpa">
+                <Typography>
                   CGPA: <strong>{edu.cgpa}</strong>
+                </Typography>
+
+                <Typography
+                  sx={{
+                    mt: 2,
+                    color: isDarkMode ? '#ccc' : '#00bcd4',
+                    fontSize: '0.95rem',
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {edu.description}
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
-        ))}
-      </Grid>
+          </Box>
+        </Box>
+      ))}
     </Box>
   );
 };
