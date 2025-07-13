@@ -1,33 +1,54 @@
 // src/components/SoftSkills.tsx
 import React from "react";
-import { Box, Typography, Grid, Paper } from "@mui/material";
-import "./Skills.css"; // assuming same CSS file is reused
+import { Box, Typography, Grid, Paper, useTheme } from "@mui/material";
+import "./Skills.css"; // Reuse same CSS
 
 const softSkills = [
-  { name: "Communication", icon: "/skills/communication.png" },
-  { name: "Team Work", icon: "/skills/teamwork.png" },
-  { name: "Creativity", icon: "/skills/creativity.png" },
-  { name: "Creative Thinking", icon: "/skills/thinking.png" },
-  { name: "Problem Solving", icon: "/skills/problem_solving.png" },
+  { name: "Communication", icon: "./images/conversation.png" },
+  { name: "Team Work", icon: "./images/brainstorm.png" },
+  { name: "Creativity", icon: "./images/brain.png" },
+  { name: "Creative Thinking", icon: "./images/idea.png" },
+  { name: "Problem Solving", icon: "./images/problem-solving-skills.png" },
 ];
 
-const SoftSkills = () => {
+const SoftSkills: React.FC = () => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
+
   return (
     <Box sx={{ px: 4, py: 8, textAlign: "center" }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{
+          color: isDarkMode ? '#00fa43' : '#00bcd4',
+          fontWeight: 'bold',
+          textAlign: 'center',
+        }}
+      >
         Soft Skills
       </Typography>
       <Grid
         container
         spacing={4}
-        justifyContent="space-evenly"
+        justifyContent="center"
         alignItems="center"
       >
         {softSkills.map((skill) => (
-          <Grid item key={skill.name} sx={{ maxWidth: 160, flexGrow: 1 }}>
-            <Paper elevation={3} className="skill-card">
+          <Grid item key={skill.name}>
+            <Paper
+              elevation={3}
+              className={`skill-card ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
+              sx={{
+                backgroundColor: isDarkMode ? '#292c28ff' : '#e0f7fa',
+              }}
+            >
               <img src={skill.icon} alt={skill.name} className="skill-icon" />
-              <Typography variant="subtitle1" sx={{ mt: 1 }}>
+              <Typography
+                variant="subtitle1"
+                className={`skill-name ${isDarkMode ? 'dark-text' : 'light-text'}`}
+                sx={{ marginTop: '10px', color: '#000000' }}
+              >
                 {skill.name}
               </Typography>
             </Paper>

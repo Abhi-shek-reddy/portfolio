@@ -20,7 +20,7 @@ const experiences = [
     location: "Hyderabad, India",
     duration: "Jul 2023 - Jul 2024",
     description:
-      "Developed and maintained the Hargharwala app using Node.js and ExpressJS, hosted on private cloud with Nginx and CI/CD pipelines using GitHub Actions. Configured on-premises Ubuntu servers with public IP for development; learned Flutter for cross-platform app development.",
+      "Designed and developed a full-featured Admin Dashboard and two responsive landing pages for the Hargharwala delivery platform. Collaborated on multiple frontend tasks, focusing on UI components, dashboard analytics, and production-ready layouts, while actively contributing to cross-functional development workflows.",
     skills: ["ReactJS", "HTML5", "CSS3", "MUI", "TypeScript", "Bootstrap", "Git", "GitHub"],
   },
   {
@@ -29,7 +29,7 @@ const experiences = [
     location: "Hyderabad, India",
     duration: "Jan 2023 - Jun 2023",
     description:
-      "Worked on responsive frontend web development with modern UI technologies and frameworks.",
+      "Contributed to responsive frontend development by building visually appealing landing pages and a custom IDE interface. Focused on UI design, layout structuring, and component-level integration using modern web technologies.",
     skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Bootstrap", "Tailwind CSS"],
   },
 ];

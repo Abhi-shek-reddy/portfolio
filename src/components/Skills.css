@@ -1,21 +1,66 @@
+/* src/components/Skills.css */
+
 .skill-card {
   width: 130px;
   height: 160px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   padding: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
 }
 
-.skill-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
+/* Icon inside the card */
 .skill-icon {
   width: 64px;
   height: 64px;
   object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Text styling */
+.skill-name {
+  font-weight: 600;
+  text-align: center;
+  transition: color 0.3s ease, transform 0.3s ease, font-weight 0.3s ease;
+}
+
+/* Hover effects */
+.skill-card:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+
+.skill-card:hover .skill-icon {
+  transform: scale(1.1);
+}
+
+.skill-card:hover .skill-name {
+  transform: scale(1.07);
+  font-weight: 700;
+}
+
+/* Hover text color for light theme */
+.skill-card:hover .light-text {
+  color: #0077b5; /* Blue */
+}
+
+/* Hover text color for dark theme */
+.skill-card:hover .dark-text {
+  color: #00ff80; /* Green */
+}
+
+/* Glow for light mode */
+.light-mode:hover {
+  border-color: #00bfff;
+  box-shadow: 0 0 12px #00bfff, 0 0 24px #00bfff88;
+}
+
+/* Glow for dark mode */
+.dark-mode:hover {
+  border-color: #00ff80;
+  box-shadow: 0 0 12px #00ff80, 0 0 24px #00ff8088;
 }

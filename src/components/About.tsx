@@ -1,9 +1,13 @@
 // src/components/About.tsx
 import React from "react";
-import { Box, Typography, Container, Divider } from "@mui/material";
+import { Box, Typography, Container, Divider, useTheme } from "@mui/material";
 import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
 
 const About: React.FC = () => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
+  const highlightColor = isDarkMode ? "#00fa43" : "#0288d1"; // Green or Sky Blue
+
   return (
     <Container
       maxWidth="md"
@@ -16,15 +20,29 @@ const About: React.FC = () => {
       }}
     >
       <Box display="flex" alignItems="center" gap={1} mb={2}>
-        <EmojiObjectsIcon color="primary" />
-        <Typography variant="h4" fontWeight="bold" color="#64B5F6">
+        <EmojiObjectsIcon sx={{ color: highlightColor }} />
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          sx={{ color: highlightColor }}
+        >
           About Me
         </Typography>
       </Box>
 
       <Divider sx={{ width: "100%", mb: 4 }} />
 
-      <Typography variant="body1" sx={{ px: 2, lineHeight: 1.8 }}>
+      <Typography
+        variant="body1"
+        sx={{
+          px: 2,
+          lineHeight: 1.8,
+          "& strong": {
+            color: highlightColor,
+            fontWeight: 600,
+          },
+        }}
+      >
         I'm a passionate <strong>frontend developer</strong> with a strong foundation in <strong>web design</strong> and a growing skillset in <strong>backend technologies</strong>. Currently pursuing my Master's with a concentration in Web Design, I specialize in building responsive, scalable, and user-centric applications using <strong>React</strong>, <strong>TypeScript</strong>, and modern UI frameworks.
         <br />
         <br />

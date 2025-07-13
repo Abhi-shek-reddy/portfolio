@@ -129,7 +129,12 @@ const Home: React.FC = () => {
         {/* Right Side - Orbit */}
         <Box sx={{ flex: 1, display: "flex", justifyContent: "center", position: "relative" }}>
           <div className="orbit-container floating">
-            <div className="orbit-ring">
+            <Box
+              className="orbit-ring"
+              sx={{
+                border: `2px dashed ${isDarkMode ? "#00fa43" : "#1976d2"}`,
+              }}
+            >
               <div className="orbit-center">
                 <img
                   src="./images/cvPhoto.jpg"
@@ -137,32 +142,32 @@ const Home: React.FC = () => {
                   className="orbit-image"
                 />
               </div>
-              <div className="icon-orbit icon1 linkedin floating">
+              <div className="icon-orbit icon1 linkedin">
                 <IconButton href="https://linkedin.com" target="_blank">
                   <LinkedIn />
                 </IconButton>
               </div>
-              <div className="icon-orbit icon2 mail floating">
+              <div className="icon-orbit icon2 mail">
                 <IconButton href="mailto:shiva@example.com">
                   <Mail />
                 </IconButton>
               </div>
-              <div className="icon-orbit icon3 instagram floating">
+              <div className="icon-orbit icon3 instagram">
                 <IconButton href="https://instagram.com" target="_blank">
                   <Instagram />
                 </IconButton>
               </div>
-              <div className="icon-orbit icon4 whatsapp floating">
+              <div className="icon-orbit icon4 whatsapp">
                 <IconButton href="https://wa.me/1234567890" target="_blank">
                   <WhatsApp />
                 </IconButton>
               </div>
-              <div className="icon-orbit icon5 github floating">
+              <div className="icon-orbit icon5 github">
                 <IconButton href="https://github.com" target="_blank">
                   <GitHub />
                 </IconButton>
               </div>
-            </div>
+            </Box>
           </div>
         </Box>
       </Box>

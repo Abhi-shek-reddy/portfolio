@@ -16,7 +16,6 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
-
 import './Contact.css';
 
 const ContactMe: React.FC = () => {
@@ -32,12 +31,34 @@ const ContactMe: React.FC = () => {
     setSnackbarOpen(true);
   };
 
+  const contactData = [
+    {
+      icon: <PhoneIcon sx={{ color: '#d32f2f' }} />,
+      value: phone,
+    },
+    {
+      icon: <EmailIcon sx={{ color: '#ff9800' }} />,
+      value: email,
+    },
+  ];
+
   return (
     <Box className="contact-container">
-      <Typography variant="h4" className="contact-title" gutterBottom>
+      {/* Heading */}
+      <Typography
+        variant="h4"
+        sx={{
+          fontWeight: 'bold',
+          paddingTop: 4,
+          marginBottom: 4,
+          color: theme.palette.mode === 'dark' ? '#00fa43' : '#1976d2',
+          textAlign: 'center',
+        }}
+      >
         📞 Contact Me
       </Typography>
 
+      {/* Phone & Email Boxes */}
       <Grid
         container
         spacing={3}
@@ -45,63 +66,70 @@ const ContactMe: React.FC = () => {
         justifyContent="center"
         className="contact-row"
       >
-        <Grid item xs={12} sm={6}>
-          <Box className="contact-box">
-            <Box className="contact-info">
-              <PhoneIcon color="primary" />
-              <Typography variant="body1" className="contact-text">
-                {phone}
-              </Typography>
-              <Tooltip title="Copy Number">
-                <IconButton onClick={() => handleCopy(phone)}>
-                  <ContentCopyIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
+        {contactData.map((item, index) => (
+          <Grid item xs={12} sm={6} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box
+              className="contact-box"
+              sx={{
+                width: '100%',
+                maxWidth: 400,
+                padding: 2.5,
+                borderRadius: 2,
+                border: `1px solid ${theme.palette.mode === 'dark' ? '#00fa43' : '#90caf9'}`,
+                backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#f9f9f9',
+              }}
+            >
+              <Box className="contact-info" sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                {item.icon}
+                <Typography
+                  variant="body1"
+                  className="contact-text"
+                  sx={{ flexGrow: 1, color: theme.palette.text.primary }}
+                >
+                  {item.value}
+                </Typography>
+                <Tooltip title="Copy">
+                  <IconButton onClick={() => handleCopy(item.value)} sx={{ color: theme.palette.text.primary }}>
+                    <ContentCopyIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              </Box>
             </Box>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} sm={6}>
-          <Box className="contact-box">
-            <Box className="contact-info">
-              <EmailIcon color="error" />
-              <Typography variant="body1" className="contact-text">
-                {email}
-              </Typography>
-              <Tooltip title="Copy Email">
-                <IconButton onClick={() => handleCopy(email)}>
-                  <ContentCopyIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            </Box>
-          </Box>
-        </Grid>
+          </Grid>
+        ))}
       </Grid>
 
       {/* Social Media Icons */}
-      <Box className="social-icons">
+      <Box className="social-icons" sx={{ mt: 4, display: 'flex', gap: 2, justifyContent: 'center' }}>
         <Tooltip title="LinkedIn">
-          <IconButton href="https://linkedin.com" target="_blank" style={{ color: '#0077B5' }}>
-            <LinkedInIcon />
-          </IconButton>
+          <span className="icon-wrapper linkedin">
+            <IconButton href="https://linkedin.com" target="_blank">
+              <LinkedInIcon />
+            </IconButton>
+          </span>
         </Tooltip>
         <Tooltip title="GitHub">
-          <IconButton href="https://github.com" target="_blank" style={{ color: '#000000' }}>
-            <GitHubIcon />
-          </IconButton>
+          <span className="icon-wrapper github">
+            <IconButton href="https://github.com" target="_blank">
+              <GitHubIcon />
+            </IconButton>
+          </span>
         </Tooltip>
         <Tooltip title="Instagram">
-          <IconButton href="https://instagram.com" target="_blank" style={{ color: '#C13584' }}>
-            <InstagramIcon />
-          </IconButton>
+          <span className="icon-wrapper instagram">
+            <IconButton href="https://instagram.com" target="_blank">
+              <InstagramIcon />
+            </IconButton>
+          </span>
         </Tooltip>
       </Box>
 
       {/* Footer */}
-      <Typography variant="body2" sx={{ mt: 4, color: '#777' }}>
+      <Typography variant="body2" sx={{ mt: 4, color: '#777', textAlign: 'center' }}>
         © 2025 Abhishek. All rights reserved.
       </Typography>
 
+      {/* Copy Snackbar */}
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={2000}

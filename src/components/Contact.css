@@ -1,62 +1,73 @@
-.contact-container {
-  padding: 60px 20px;
-  text-align: center;
+.icon-wrapper {
+  position: relative;
+  border-radius: 50%;
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
 }
 
-.contact-title {
-  font-weight: bold;
-  margin-bottom: 30px;
-}
-
-.contact-row {
-  margin-bottom: 30px;
-}
-
-.contact-box {
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+.icon-wrapper svg {
+  font-size: 32px;
   transition: transform 0.3s ease;
 }
 
-.contact-box:hover {
-  transform: translateY(-5px);
+/* Base brand color */
+.icon-wrapper.linkedin svg {
+  color: #0077B5;
+}
+.icon-wrapper.github svg {
+  color: #000000;
+}
+.icon-wrapper.instagram svg {
+  color: #C13584;
 }
 
-.contact-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Glow circle effect on hover */
+.icon-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.4s ease-in-out;
+  z-index: -1;
 }
 
-.contact-text {
-  flex: 1;
-  margin-left: 10px;
-  text-align: left;
-  font-weight: 500;
+.icon-wrapper.linkedin::before {
+  background: rgba(0, 119, 181, 0.3);
+}
+.icon-wrapper.github::before {
+  background: rgba(0, 0, 0, 0.3);
+}
+.icon-wrapper.instagram::before {
+  background: rgba(193, 53, 132, 0.3);
 }
 
-.social-icons {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+/* On hover: pulse + glow + bounce */
+.icon-wrapper:hover {
+  transform: scale(1.15);
+}
+.icon-wrapper:hover svg {
+  transform: rotate(8deg);
+}
+.icon-wrapper:hover::before {
+  opacity: 1;
+  transform: scale(1.2);
+  animation: glowPulse 1.2s ease-in-out infinite;
 }
 
-/* Responsive update */
-@media (max-width: 600px) {
-  .contact-box {
-    width: 100%;
-    margin-bottom: 20px;
+/* Glowing circular animation */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
   }
-
-  .contact-info {
-    flex-direction: row;
-    justify-content: space-between;
+  50% {
+    box-shadow: 0 0 10px 6px rgba(255, 255, 255, 0.15);
   }
-
-  .contact-text {
-    font-size: 15px;
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
 }
