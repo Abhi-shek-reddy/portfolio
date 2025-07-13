@@ -18,7 +18,16 @@ interface AppProps {
 
 const App: React.FC<AppProps> = ({ mode, setMode }) => {
   return (
-    <div className="app" style={{ paddingTop: "1px" }}>
+    <div
+      className="app"
+      style={{
+        backgroundColor: mode === "light" ? "#021230ff" : "#111",
+        color: "#fff",
+        transition: "all 0.3s ease",
+        minHeight: "100vh",
+        paddingTop: "1px",
+      }}
+    >
       <NavBar mode={mode} setMode={setMode} />
       <Home />
       <About />
@@ -26,7 +35,6 @@ const App: React.FC<AppProps> = ({ mode, setMode }) => {
       <SoftSkills />
       <Experience />
       <Education />
-
       <Projects />
       <Contact />
     </div>

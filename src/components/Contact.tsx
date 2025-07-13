@@ -24,8 +24,8 @@ const ContactMe: React.FC = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const phone = '+1 234-567-8901';
-  const email = 'youremail@example.com';
+  const phone = '+1 484-482-9961';
+  const email = 'abhishekreddymanam@gmail.com';
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);

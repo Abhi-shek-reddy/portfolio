@@ -7,10 +7,12 @@ import {
   CardContent,
   Chip,
   Divider,
+  useTheme,
 } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import "./Experience.css"
+import "./Experience.css";
+
 const experiences = [
   {
     role: "React Developer",
@@ -33,9 +35,20 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
+
   return (
     <Box sx={{ px: 4, py: 6 }}>
-      <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", mb: 4 }}>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{
+          fontWeight: "bold",
+          mb: 4,
+          color: isDarkMode ? "#00fa43" : "#023E8A",
+        }}
+      >
         Experience
       </Typography>
 
@@ -54,7 +67,7 @@ export default function Experience() {
                 width: 12,
                 height: 12,
                 borderRadius: "50%",
-                bgcolor: "primary.main",
+                bgcolor: isDarkMode ? "#00fa43" : "#023E8A",
               }}
             />
 
@@ -65,7 +78,15 @@ export default function Experience() {
           </Box>
 
           {/* Experience Card */}
-          <Card variant="outlined" sx={{ flex: 1 }}>
+          <Card
+            variant="outlined"
+            sx={{
+              flex: 1,
+              backgroundColor: isDarkMode ? "#000" : "#90E0EF",
+              color: isDarkMode ? "#fff" : "#000",
+              borderColor: isDarkMode ? "#00fa43" : "#023E8A",
+            }}
+          >
             <CardContent>
               <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                 {exp.role}
@@ -79,15 +100,24 @@ export default function Experience() {
                 {exp.company}, {exp.location}
               </Typography>
 
-              <Typography sx={{ mt: 2, color: "text.secondary" }}>
+              <Typography sx={{ mt: 2, color: isDarkMode ? "#ccc" : "text.secondary" }}>
                 {exp.description}
               </Typography>
 
-              <Divider sx={{ my: 2 }} />
+              <Divider sx={{ my: 2, borderColor: isDarkMode ? "#00fa43" : "#023E8A" }} />
 
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
                 {exp.skills.map((skill, i) => (
-                  <Chip key={i} label={skill} color="primary" variant="outlined" />
+                  <Chip
+                    key={i}
+                    label={skill}
+                    color="primary"
+                    variant="outlined"
+                    sx={{
+                      borderColor: isDarkMode ? "#00fa43" : "#023E8A",
+                      color: isDarkMode ? "#00fa43" : "#023E8A",
+                    }}
+                  />
                 ))}
               </Box>
             </CardContent>

@@ -17,7 +17,7 @@ const About: React.FC = () => {
     >
       <Box display="flex" alignItems="center" gap={1} mb={2}>
         <EmojiObjectsIcon color="primary" />
-        <Typography variant="h4" fontWeight="bold">
+        <Typography variant="h4" fontWeight="bold" color="#64B5F6">
           About Me
         </Typography>
       </Box>

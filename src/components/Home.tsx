@@ -12,6 +12,7 @@ import {
   DialogActions,
   Snackbar,
   Alert,
+  useTheme,
 } from "@mui/material";
 import {
   GitHub,
@@ -20,6 +21,7 @@ import {
   Mail,
   WhatsApp,
   Send,
+  Close,
 } from "@mui/icons-material";
 import Typed from "react-typed";
 import "./Home.css";
@@ -32,6 +34,9 @@ const Home: React.FC = () => {
     email: "",
     message: "",
   });
+
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -60,7 +65,7 @@ const Home: React.FC = () => {
         {/* Left Side */}
         <Box sx={{ flex: 1 }}>
           <Typography variant="h4" gutterBottom>
-            👋 Hi
+            👋 Hi...
           </Typography>
 
           <Box sx={{ mb: 2 }}>
@@ -79,6 +84,7 @@ const Home: React.FC = () => {
                 fontSize: "2rem",
                 fontWeight: "bold",
                 display: "inline-block",
+                color: isDarkMode ? "#00fa43ff" : "#90E0EF",
               }}
             />
           </Box>
@@ -90,10 +96,31 @@ const Home: React.FC = () => {
           </Typography>
 
           <Box sx={{ display: "flex", gap: 2 }}>
-            <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
+            <Button
+              variant="contained"
+              onClick={() => setOpen(true)}
+              sx={{
+                textTransform: "none",
+                backgroundColor: isDarkMode ? "#00fa43ff" : "#90E0EF",
+                color: "black",
+                ":hover": {
+                  backgroundColor: isDarkMode ? "#111" : "#0353A4",
+                },
+              }}
+            >
               Send Message
             </Button>
-            <Button variant="outlined" color="primary">
+            <Button
+              variant="outlined"
+              sx={{
+                textTransform: "none",
+                color: isDarkMode ? "#00fa43ff" : "#90E0EF",
+                borderColor: isDarkMode ? "#00fa43ff" : "#90E0EF",
+                ":hover": {
+                  borderColor: isDarkMode ? "#aaa" : "#0353A4",
+                },
+              }}
+            >
               Resume
             </Button>
           </Box>
@@ -105,7 +132,7 @@ const Home: React.FC = () => {
             <div className="orbit-ring">
               <div className="orbit-center">
                 <img
-                  src="/static/images/profile.jpg"
+                  src="./images/cvPhoto.jpg"
                   alt="Abhishek Reddy"
                   className="orbit-image"
                 />
@@ -141,8 +168,29 @@ const Home: React.FC = () => {
       </Box>
 
       {/* Dialog Form */}
-      <Dialog open={open} onClose={() => setOpen(false)} fullWidth>
-        <DialogTitle>Let's Connect!</DialogTitle>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        fullWidth
+        PaperProps={{
+          sx: {
+            backgroundColor: isDarkMode ? "#37c65d" : "#90E0EF",
+            color: "black",
+          },
+        }}
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          Let's Connect!
+          <IconButton onClick={() => setOpen(false)}>
+            <Close />
+          </IconButton>
+        </DialogTitle>
         <DialogContent>
           <Typography sx={{ mb: 2 }}>
             I'd love to hear from you. Send me a message!
@@ -175,7 +223,19 @@ const Home: React.FC = () => {
           />
         </DialogContent>
         <DialogActions sx={{ px: 3, pb: 2 }}>
-          <Button onClick={handleSubmit} variant="contained" startIcon={<Send />}>
+          <Button
+            onClick={handleSubmit}
+            variant="contained"
+            startIcon={<Send />}
+            sx={{
+              textTransform: "none",
+              backgroundColor: isDarkMode ? "#000" : "#023E8A",
+              color: "white",
+              ":hover": {
+                backgroundColor: isDarkMode ? "#111" : "#0353A4",
+              },
+            }}
+          >
             Send Message
           </Button>
         </DialogActions>

@@ -1,149 +1,116 @@
-// src/components/NavBar.tsx
-import React from "react";
+import React, { useState } from "react";
 import {
-  AppBar, Toolbar, IconButton, Typography, Container,
-  Button, Box, Drawer, List, ListItem, ListItemButton, ListItemText
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Box,
+  Button,
+  Tooltip,
+  useMediaQuery,
+  useTheme
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from '@mui/icons-material/Close';
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { useTheme } from '@mui/material/styles';
 
-interface Props {
-  mode: 'light' | 'dark';
-  setMode: React.Dispatch<React.SetStateAction<'light' | 'dark'>>;
+interface NavBarProps {
+  mode: "light" | "dark";
+  setMode: React.Dispatch<React.SetStateAction<"light" | "dark">>;
 }
 
-const pages = ['Home', 'About','Skills','Experience',"Projects",  'Contact'];
-
-const NavBar: React.FC<Props> = ({ mode, setMode }) => {
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
+const NavBar: React.FC<NavBarProps> = ({ mode, setMode }) => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-    if (
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return;
-    }
+  const navLinks = ["Home", "About", "Skills", "Projects", "Contact"];
+
+  const toggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open);
   };
 
-  const drawerList = (
-    <Box
-      sx={{
-        width: 250,
-        height: '100%',
-        p: 2,
-        position: 'relative',
-        backgroundColor: theme.palette.background.paper,
-      }}
-      role="presentation"
-    >
-      <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
-        <IconButton onClick={toggleDrawer(false)} color="inherit">
-          <CloseIcon />
-        </IconButton>
-      </Box>
+  const toggleDarkMode = () => {
+    setMode(mode === "light" ? "dark" : "light");
+  };
 
-      <List sx={{ mt: 6 }}>
-        {pages.map((text, index) => (
+  const drawer = (
+    <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+      <List sx={{ width: 250 }}>
+        {navLinks.map((text) => (
           <ListItem
+            button
             key={text}
-            disablePadding
-            sx={{
-              animation: `fadeSlideIn 0.5s ease ${(index + 1) * 0.1}s forwards`,
-              opacity: 0,
-              transform: 'translateX(-20px)',
-            }}
+            onClick={toggleDrawer(false)}
+            component="a"
+            href={`#${text.toLowerCase()}`}
           >
-            <ListItemButton component="a" href={`#${text.toLowerCase()}`} onClick={toggleDrawer(false)}>
-              <ListItemText primary={text} />
-            </ListItemButton>
+            <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
-    </Box>
+    </Drawer>
   );
 
   return (
-    <>
-      <style>
-        {`
-          @keyframes fadeSlideIn {
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-        `}
-      </style>
+    <Box
+      sx={{
+        mt: "50px",
+        mx: "50px",
+        borderRadius: "50px",
+        overflow: "hidden"
+      }}
+    >
+      <AppBar
+        position="static"
+        elevation={4}
+        sx={{
+          backgroundColor: mode === "light" ? "#023E8A" : "#111",
+          color: "white",
+          borderRadius: "50px"
+        }}
+      >
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ fontWeight: "bold", letterSpacing: 1 }}
+          >
+            Abhishek.dev
+          </Typography>
 
-      <AppBar position="sticky">
-        <Container maxWidth="xl">
-          <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="#"
-              sx={{
-                fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
-                display: { xs: "none", md: "flex" },
-              }}
-            >
-              Abhishek
-            </Typography>
-
-            <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}>
-              <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-                <MenuIcon />
-              </IconButton>
-              <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-                {drawerList}
-              </Drawer>
-            </Box>
-
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="#"
-              sx={{
-                fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
-                display: { xs: "flex", md: "none" },
-              }}
-            >
-              Abhishek
-            </Typography>
-
-            <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
-              {pages.map((page) => (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            {!isMobile &&
+              navLinks.map((text) => (
                 <Button
-                  key={page}
-                  href={`#${page.toLowerCase()}`}
-                  sx={{ color: "white" }}
+                  key={text}
+                  color="inherit"
+                  href={`#${text.toLowerCase()}`}
                 >
-                  {page}
+                  {text}
                 </Button>
               ))}
-            </Box>
 
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <IconButton onClick={() => setMode(mode === 'light' ? 'dark' : 'light')} color="inherit">
-                {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+            {isMobile && (
+              <IconButton edge="end" color="inherit" onClick={toggleDrawer(true)}>
+                <MenuIcon />
               </IconButton>
-            </Box>
-          </Toolbar>
-        </Container>
+            )}
+
+            <Tooltip title="Toggle Theme">
+              <IconButton onClick={toggleDarkMode} color="inherit">
+                {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
+            </Tooltip>
+          </Box>
+        </Toolbar>
       </AppBar>
-    </>
+      {drawer}
+    </Box>
   );
 };
 
