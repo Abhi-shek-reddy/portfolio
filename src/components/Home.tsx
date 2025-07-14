@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   Box,
   Button,
@@ -22,7 +22,6 @@ import {
   Send,
   Close,
 } from "@mui/icons-material";
-import Typed from "react-typed";
 import Lottie from "lottie-react";
 import hiAnimation from "../lottie/Hello.json";
 import { replaceLottieColor } from "../utils/replaceLottieColor";
@@ -39,6 +38,42 @@ const Home: React.FC = () => {
   const themeColor = isDarkMode ? "#00fa43" : "#0077b6";
 
   const updatedLottie = useMemo(() => replaceLottieColor(hiAnimation, themeColor), [themeColor]);
+
+  // Typewriter Logic
+  const titles = [
+    "I am Abhishek Reddy..",
+    "I am Frontend Developer..",
+    "I am Full Stack Developer..",
+    "I build amazing things..",
+    "I am a Programmer..",
+  ];
+
+  const [currentText, setCurrentText] = useState("");
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
+
+  useEffect(() => {
+    if (index === titles.length) return;
+
+    if (subIndex === titles[index].length + 1 && !reverse) {
+      setTimeout(() => setReverse(true), 800);
+      return;
+    }
+
+    if (subIndex === 0 && reverse) {
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % titles.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+      setCurrentText(titles[index].substring(0, subIndex));
+    }, reverse ? 40 : 80);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -72,25 +107,19 @@ const Home: React.FC = () => {
           </Box>
 
           <Box sx={{ mb: 2 }}>
-            <Typed
+            <Typography
+              variant="h5"
               className="gloria-hallelujah-regular"
-              strings={[
-                "I am Abhishek Reddy..",
-                "I am Frontend Developer..",
-                "I am Full Stack Developer..",
-                "I build amazing things..",
-                "I am a Programmer..",
-              ]}
-              typeSpeed={50}
-              backSpeed={30}
-              loop
-              style={{
-                fontSize: "2rem",
-                fontWeight: "bold",
-                display: "inline-block",
+              sx={{
                 color: isDarkMode ? "#00fa43ff" : "#90E0EF",
+                fontWeight: "bold",
+                fontSize: "2rem",
+                minHeight: "48px",
               }}
-            />
+            >
+              {currentText}
+              <span className="blinking-cursor">|</span>
+            </Typography>
           </Box>
 
           <Typography variant="body1" sx={{ mb: 4 }}>
@@ -192,33 +221,14 @@ const Home: React.FC = () => {
       </Box>
 
       {/* Contact Dialog */}
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        fullWidth
-        PaperProps={{
-          sx: {
-            backgroundColor: isDarkMode ? "#37c65d" : "#90E0EF",
-            color: "black",
-          },
-        }}
-      >
-        <DialogTitle
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+      <Dialog open={open} onClose={() => setOpen(false)} fullWidth>
+        <DialogTitle sx={{ display: "flex", justifyContent: "space-between" }}>
           Let's Connect!
           <IconButton onClick={() => setOpen(false)}>
             <Close />
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Typography sx={{ mb: 2 }}>
-            I'd love to hear from you. Send me a message!
-          </Typography>
           <TextField
             margin="dense"
             fullWidth
@@ -246,19 +256,11 @@ const Home: React.FC = () => {
             onChange={handleChange}
           />
         </DialogContent>
-        <DialogActions sx={{ px: 3, pb: 2 }}>
+        <DialogActions>
           <Button
             onClick={handleSubmit}
             variant="contained"
             startIcon={<Send />}
-            sx={{
-              textTransform: "none",
-              backgroundColor: isDarkMode ? "#000" : "#023E8A",
-              color: "white",
-              ":hover": {
-                backgroundColor: isDarkMode ? "#111" : "#0353A4",
-              },
-            }}
           >
             Send Message
           </Button>
@@ -266,48 +268,27 @@ const Home: React.FC = () => {
       </Dialog>
 
       {/* Resume Dialog */}
-      <Dialog
-        open={resumeOpen}
-        onClose={() => setResumeOpen(false)}
-        maxWidth="md"
-        fullWidth
-      >
-        <DialogTitle
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+      <Dialog open={resumeOpen} onClose={() => setResumeOpen(false)} fullWidth maxWidth="md">
+        <DialogTitle>
           Resume
-          <IconButton onClick={() => setResumeOpen(false)}>
+          <IconButton onClick={() => setResumeOpen(false)} sx={{ float: "right" }}>
             <Close />
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Box sx={{ textAlign: "center" }}>
-            <iframe
-              src="/Abhishek_Reddy_Resume.pdf"
-              title="Resume PDF"
-              width="100%"
-              height="500px"
-              style={{ border: "none" }}
-            />
-          </Box>
+          <iframe
+            src="/Abhishek_Reddy_Resume.pdf"
+            title="Resume PDF"
+            width="100%"
+            height="500px"
+            style={{ border: "none" }}
+          />
         </DialogContent>
-        <DialogActions sx={{ px: 3, pb: 2 }}>
+        <DialogActions>
           <Button
             variant="contained"
             href="/Abhishek_Reddy_Resume.pdf"
             download
-            sx={{
-              textTransform: "none",
-              backgroundColor: "#0077b6",
-              color: "white",
-              ":hover": {
-                backgroundColor: "#0353A4",
-              },
-            }}
           >
             Download Resume
           </Button>
