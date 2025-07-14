@@ -28,7 +28,7 @@ const Skills: React.FC = () => {
         variant="h4"
         gutterBottom
         sx={{
-          color: isDarkMode ? '#00fa43' : '#00bcd4',
+          color: isDarkMode ? '#00fa43' : '#007c91',
           fontWeight: 'bold',
           textAlign: 'center',
         }}

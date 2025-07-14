@@ -10,6 +10,7 @@ import "./App.css";
 import SoftSkills from "./components/SoftSkills";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
+import CodeContribution from "./components/CodeContribution";
 
 interface AppProps {
   mode: "light" | "dark";
@@ -31,6 +32,7 @@ const App: React.FC<AppProps> = ({ mode, setMode }) => {
       <NavBar mode={mode} setMode={setMode} />
       <Home />
       <About />
+      <CodeContribution />
       <Experience />
       <Skills />
       <SoftSkills />
