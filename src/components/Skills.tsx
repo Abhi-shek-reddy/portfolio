@@ -46,8 +46,11 @@ const Skills: React.FC = () => {
             <img src={skill.icon} alt={skill.name} className="skill-icon" />
             <Typography
               variant="subtitle1"
-              className={`skill-name ${isDarkMode ? "dark-text" : "light-text"}`}
-              sx={{ marginTop: "10px" }}
+              className="skill-name"
+              sx={{
+                marginTop: "10px",
+                color: isDarkMode ? "white" : "black",
+              }}
             >
               {skill.name}
             </Typography>
