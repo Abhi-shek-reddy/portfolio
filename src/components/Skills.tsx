@@ -27,9 +27,9 @@ const Skills: React.FC = () => {
       <Typography
         variant="h4"
         gutterBottom
-        className="monoton-regular"
+        className="heading-monoton"
         sx={{
-          color: isDarkMode ? "#00fa43" : "#0288d1",
+          color: isDarkMode ? "#00fa43" : "#00bcd4",
           fontWeight: "bold",
           textAlign: "center",
         }}

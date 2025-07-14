@@ -6,11 +6,11 @@ import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
 const About: React.FC = () => {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === "dark";
-  const highlightColor = isDarkMode ? "#00fa43" : "#0288d1"; // Green or Sky Blue
+  const highlightColor = isDarkMode ? "#00fa43" : "#00bcd4"; // Neon green (dark) or light blue (light)
 
   return (
     <Container
-    id="about"
+      id="about"
       maxWidth="md"
       sx={{
         py: 10,
@@ -23,7 +23,6 @@ const About: React.FC = () => {
       <Box display="flex" alignItems="center" gap={1} mb={2}>
         <EmojiObjectsIcon sx={{ color: highlightColor }} />
         <Typography
-        
           variant="h4"
           fontWeight="bold"
           className="heading-monoton"
@@ -41,7 +40,7 @@ const About: React.FC = () => {
           px: 2,
           lineHeight: 1.8,
           "& strong": {
-            color: highlightColor,
+            color: highlightColor, // Highlight keywords
             fontWeight: 600,
           },
         }}

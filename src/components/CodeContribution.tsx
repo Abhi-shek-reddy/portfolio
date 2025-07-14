@@ -22,7 +22,7 @@ const CodeContribution: React.FC = () => {
         className="heading-monoton"
         sx={{
           fontWeight: "bold",
-          color: isDarkMode ? "#37c65d" : "#0077b5",
+          color: isDarkMode ? "#37c65d" : "#00bcd4",
           mb: 3,
         }}
       >

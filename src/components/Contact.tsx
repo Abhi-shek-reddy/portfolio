@@ -52,7 +52,7 @@ const ContactMe: React.FC = () => {
           fontWeight: 'bold',
           paddingTop: 4,
           marginBottom: 4,
-          color: theme.palette.mode === 'dark' ? '#00fa43' : '#1976d2',
+          color: theme.palette.mode === 'dark' ? '#00fa43' : '#00bcd4',
           textAlign: 'center',
         }}
       >
