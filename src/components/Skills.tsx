@@ -27,47 +27,27 @@ const Skills: React.FC = () => {
       <Typography
         variant="h4"
         gutterBottom
-        className="heading-monoton"
+        className="monoton-regular"
         sx={{
           color: isDarkMode ? "#00fa43" : "#0288d1",
           fontWeight: "bold",
           textAlign: "center",
-          fontFamily: "inherit",
         }}
       >
         Skills
       </Typography>
 
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: 4,
-          mt: 4,
-        }}
-      >
+      <Box className="skills-grid">
         {skills.map((skill) => (
           <Box
             key={skill.name}
-            sx={{
-              width: 150,
-              p: 2,
-              borderRadius: 2,
-              backgroundColor: isDarkMode ? "#292c28ff" : "#e0f7fa",
-              boxShadow: 3,
-              textAlign: "center",
-            }}
             className={`skill-card ${isDarkMode ? "dark-mode" : "light-mode"}`}
           >
             <img src={skill.icon} alt={skill.name} className="skill-icon" />
             <Typography
               variant="subtitle1"
               className={`skill-name ${isDarkMode ? "dark-text" : "light-text"}`}
-              sx={{
-                marginTop: "10px",
-                color: "#000000",
-              }}
+              sx={{ marginTop: "10px" }}
             >
               {skill.name}
             </Typography>

@@ -1,12 +1,24 @@
-/* src/components/Skills.css */
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
 .monoton-regular {
   font-family: "Monoton", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
+
+/* Grid Layout */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Skill Card */
 .skill-card {
-  width: 130px;
+  flex: 1 1 150px; /* Flex-grow, shrink, basis */
+  max-width: 160px;
   height: 160px;
   display: flex;
   flex-direction: column;
@@ -17,9 +29,13 @@
   transition: all 0.3s ease;
   cursor: pointer;
   border: 2px solid transparent;
+  background-color: #e0f7fa;
 }
 
-/* Icon inside the card */
+.dark-mode {
+  background-color: #292c28ff;
+}
+
 .skill-icon {
   width: 64px;
   height: 64px;
@@ -27,14 +43,12 @@
   transition: transform 0.3s ease;
 }
 
-/* Text styling */
 .skill-name {
   font-weight: 600;
   text-align: center;
   transition: color 0.3s ease, transform 0.3s ease, font-weight 0.3s ease;
 }
 
-/* Hover effects */
 .skill-card:hover {
   transform: translateY(-6px) scale(1.03);
 }
@@ -48,24 +62,28 @@
   font-weight: 700;
 }
 
-/* Hover text color for light theme */
 .skill-card:hover .light-text {
-  color: #0077b5; /* Blue */
+  color: #0077b5;
 }
 
-/* Hover text color for dark theme */
 .skill-card:hover .dark-text {
-  color: #00ff80; /* Green */
+  color: #00ff80;
 }
 
-/* Glow for light mode */
 .light-mode:hover {
   border-color: #00bfff;
   box-shadow: 0 0 12px #00bfff, 0 0 24px #00bfff88;
 }
 
-/* Glow for dark mode */
 .dark-mode:hover {
   border-color: #00ff80;
   box-shadow: 0 0 12px #00ff80, 0 0 24px #00ff8088;
+}
+
+/* Mobile styles: 2 cards per row */
+@media (max-width: 600px) {
+  .skill-card {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
 }

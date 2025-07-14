@@ -113,8 +113,11 @@ const Home: React.FC = () => {
               sx={{
                 color: isDarkMode ? "#00fa43ff" : "#90E0EF",
                 fontWeight: "bold",
-                fontSize: "2rem",
-                minHeight: "48px",
+                fontSize: { xs: "1.4rem", sm: "2rem" },
+                minHeight: { xs: "72px", sm: "48px" }, // fixed height to avoid bounce
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
               }}
             >
               {currentText}
