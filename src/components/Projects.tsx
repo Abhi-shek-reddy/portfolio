@@ -6,7 +6,6 @@ import {
   CardMedia,
   CardContent,
   Chip,
-  Grid,
   useTheme,
 } from "@mui/material";
 import "./Projects.css";
@@ -68,20 +67,28 @@ const Projects: React.FC = () => {
           fontWeight: "bold",
           fontSize: "2rem",
           mb: 4,
-          fontFamily: "'Monoton', cursive", // ✅ add this line!
+          fontFamily: "'Monoton', cursive",
+          textAlign: "center",
         }}
       >
         🚀 Projects
       </Typography>
 
-      <Grid container spacing={4} justifyContent="center">
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: 4,
+        }}
+      >
         {projects.map((project, index) => (
-          <Grid
-            item
-            xs={12}
-            sm={10}
-            md={4}
+          <Box
             key={index}
+            sx={{
+              width: { xs: "100%", sm: "80%", md: "30%" },
+              display: "flex",
+            }}
             className="project-grid-item"
           >
             <Card
@@ -92,6 +99,7 @@ const Projects: React.FC = () => {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
+                width: "100%",
               }}
             >
               <CardMedia
@@ -146,9 +154,9 @@ const Projects: React.FC = () => {
                 </Box>
               </CardContent>
             </Card>
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };

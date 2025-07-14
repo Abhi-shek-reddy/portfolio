@@ -1,6 +1,6 @@
 // src/components/Skills.tsx
 import React from "react";
-import { Box, Typography, Grid, Paper, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import "./Skills.css";
 
 const skills = [
@@ -38,35 +38,42 @@ const Skills: React.FC = () => {
         Skills
       </Typography>
 
-      <Grid container spacing={3} justifyContent="center">
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: 4,
+          mt: 4,
+        }}
+      >
         {skills.map((skill) => (
-          <Grid item key={skill.name}>
-            <Paper
-              elevation={3}
-              className={`skill-card ${
-                isDarkMode ? "dark-mode" : "light-mode"
-              }`}
+          <Box
+            key={skill.name}
+            sx={{
+              width: 150,
+              p: 2,
+              borderRadius: 2,
+              backgroundColor: isDarkMode ? "#292c28ff" : "#e0f7fa",
+              boxShadow: 3,
+              textAlign: "center",
+            }}
+            className={`skill-card ${isDarkMode ? "dark-mode" : "light-mode"}`}
+          >
+            <img src={skill.icon} alt={skill.name} className="skill-icon" />
+            <Typography
+              variant="subtitle1"
+              className={`skill-name ${isDarkMode ? "dark-text" : "light-text"}`}
               sx={{
-                backgroundColor: isDarkMode ? "#292c28ff" : "#e0f7fa",
+                marginTop: "10px",
+                color: "#000000",
               }}
             >
-              <img src={skill.icon} alt={skill.name} className="skill-icon" />
-              <Typography
-                variant="subtitle1"
-                className={`skill-name ${
-                  isDarkMode ? "dark-text" : "light-text"
-                }`}
-                sx={{
-                  marginTop: "10px",
-                  color: "#000000",
-                }}
-              >
-                {skill.name}
-              </Typography>
-            </Paper>
-          </Grid>
+              {skill.name}
+            </Typography>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };

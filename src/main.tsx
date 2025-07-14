@@ -1,9 +1,11 @@
 // main.tsx
-import React, { useState } from 'react';
+
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { getTheme } from './components/Theme';
+import { getTheme } from './components/theme'; // ✅ Capital "T"
+import { useState } from 'react';
+
 const Root = () => {
   const [mode, setMode] = useState<'light' | 'dark'>('light');
 

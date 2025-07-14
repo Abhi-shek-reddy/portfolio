@@ -7,6 +7,7 @@ import {
   Drawer,
   List,
   ListItem,
+  ListItemButton,
   ListItemText,
   Box,
   Button,
@@ -50,15 +51,15 @@ const NavBar: React.FC<NavBarProps> = ({ mode, setMode }) => {
     <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
       <List sx={{ width: 250 }}>
         {navLinks.map((text) => (
-          <ListItem
-            button
-            key={text}
-            onClick={toggleDrawer(false)}
-            component="a"
-            href={`#${text.toLowerCase()}`}
-            sx={{ textTransform: "none" }}
-          >
-            <ListItemText primary={text} />
+          <ListItem key={text} disablePadding>
+            <ListItemButton
+              component="a"
+              href={`#${text.toLowerCase()}`}
+              onClick={toggleDrawer(false)}
+              sx={{ textTransform: "none" }}
+            >
+              <ListItemText primary={text} />
+            </ListItemButton>
           </ListItem>
         ))}
       </List>
@@ -82,7 +83,7 @@ const NavBar: React.FC<NavBarProps> = ({ mode, setMode }) => {
         elevation={4}
         sx={{
           backgroundColor: mode === "light" ? "#023E8A" : "#111",
-          color: mode === "light" ? "#ffffffff" : "#00fa43ff",
+          color: mode === "light" ? "#ffffff" : "#00fa43ff",
           borderRadius: "50px",
         }}
       >

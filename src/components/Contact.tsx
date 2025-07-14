@@ -5,16 +5,17 @@ import {
   IconButton,
   Tooltip,
   Snackbar,
-  Grid,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
+
 import './Contact.css';
 
 const ContactMe: React.FC = () => {
@@ -59,65 +60,91 @@ const ContactMe: React.FC = () => {
       </Typography>
 
       {/* Phone & Email Boxes */}
-      <Grid
-        container
-        spacing={3}
-        direction={isSmallScreen ? 'column' : 'row'}
-        justifyContent="center"
-        className="contact-row"
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: isSmallScreen ? 'column' : 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 3,
+          flexWrap: 'wrap',
+        }}
       >
         {contactData.map((item, index) => (
-          <Grid item xs={12} sm={6} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Box
-              className="contact-box"
-              sx={{
-                width: '100%',
-                maxWidth: 400,
-                padding: 2.5,
-                borderRadius: 2,
-                border: `1px solid ${theme.palette.mode === 'dark' ? '#00fa43' : '#90caf9'}`,
-                backgroundColor: theme.palette.mode === 'dark' ? '#121212' : '#f9f9f9',
-              }}
-            >
-              <Box className="contact-info" sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                {item.icon}
-                <Typography
-                  variant="body1"
-                  className="contact-text"
-                  sx={{ flexGrow: 1, color: theme.palette.text.primary }}
-                >
-                  {item.value}
-                </Typography>
-                <Tooltip title="Copy">
-                  <IconButton onClick={() => handleCopy(item.value)} sx={{ color: theme.palette.text.primary }}>
-                    <ContentCopyIcon fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-              </Box>
+          <Box
+            key={index}
+            sx={{
+              width: '100%',
+              maxWidth: 400,
+              padding: 2.5,
+              borderRadius: 2,
+              border: `1px solid ${
+                theme.palette.mode === 'dark' ? '#00fa43' : '#90caf9'
+              }`,
+              backgroundColor:
+                theme.palette.mode === 'dark' ? '#121212' : '#f9f9f9',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 1.5,
+            }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              {item.icon}
+              <Typography
+                variant="body1"
+                className="contact-text"
+                sx={{ color: theme.palette.text.primary }}
+              >
+                {item.value}
+              </Typography>
             </Box>
-          </Grid>
+            <Tooltip title="Copy">
+              <IconButton
+                onClick={() => handleCopy(item.value)}
+                sx={{ color: theme.palette.text.primary }}
+              >
+                <ContentCopyIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </Box>
         ))}
-      </Grid>
+      </Box>
 
       {/* Social Media Icons */}
-      <Box className="social-icons" sx={{ mt: 4, display: 'flex', gap: 2, justifyContent: 'center' }}>
+      <Box
+        className="social-icons"
+        sx={{ mt: 4, display: 'flex', gap: 2, justifyContent: 'center' }}
+      >
         <Tooltip title="LinkedIn">
           <span className="icon-wrapper linkedin">
-            <IconButton href="https://www.linkedin.com/in/abhishek-reddy-manam-1b5167204/" target="_blank" sx={{ color: '#0077b5' }}>
+            <IconButton
+              href="https://www.linkedin.com/in/abhishek-reddy-manam-1b5167204/"
+              target="_blank"
+              sx={{ color: '#0077b5' }}
+            >
               <LinkedInIcon />
             </IconButton>
           </span>
         </Tooltip>
         <Tooltip title="GitHub">
           <span className="icon-wrapper github">
-            <IconButton href="https://github.com/Abhi-shek-reddy" target="_blank" sx={{ color: '#ffffff' }}>
+            <IconButton
+              href="https://github.com/Abhi-shek-reddy"
+              target="_blank"
+              sx={{ color: '#ffffff' }}
+            >
               <GitHubIcon />
             </IconButton>
           </span>
         </Tooltip>
         <Tooltip title="Instagram">
           <span className="icon-wrapper instagram">
-            <IconButton href="https://www.instagram.com/aab.hi_/" target="_blank" sx={{ color: '#C13584' }}>
+            <IconButton
+              href="https://www.instagram.com/aab.hi_/"
+              target="_blank"
+              sx={{ color: '#C13584' }}
+            >
               <InstagramIcon />
             </IconButton>
           </span>
@@ -125,7 +152,10 @@ const ContactMe: React.FC = () => {
       </Box>
 
       {/* Footer */}
-      <Typography variant="body2" sx={{ mt: 4, color: '#777', textAlign: 'center' }}>
+      <Typography
+        variant="body2"
+        sx={{ mt: 4, color: '#777', textAlign: 'center' }}
+      >
         © 2025 Abhishek. All rights reserved.
       </Typography>
 
