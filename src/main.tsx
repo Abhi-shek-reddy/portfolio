@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { getTheme } from './components/Theme';
-
 const Root = () => {
   const [mode, setMode] = useState<'light' | 'dark'>('light');
 

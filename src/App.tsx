@@ -1,4 +1,3 @@
-// App.tsx
 import React from "react";
 import Home from "./components/Home";
 import Projects from "./components/Projects";
@@ -11,6 +10,7 @@ import SoftSkills from "./components/SoftSkills";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import CodeContribution from "./components/CodeContribution";
+import RevealSection from "./components/RevealSection"; // 👈 import the wrapper
 
 interface AppProps {
   mode: "light" | "dark";
@@ -30,15 +30,17 @@ const App: React.FC<AppProps> = ({ mode, setMode }) => {
       }}
     >
       <NavBar mode={mode} setMode={setMode} />
-      <Home />
-      <About />
-      <CodeContribution />
-      <Experience />
-      <Skills />
-      <SoftSkills />
-      <Education />
-      <Projects />
-      <Contact />
+
+      {/* 👇 Animate each section on scroll */}
+      <RevealSection><Home /></RevealSection>
+      <RevealSection><About /></RevealSection>
+      <RevealSection><CodeContribution /></RevealSection>
+      <RevealSection><Experience /></RevealSection>
+      <RevealSection><Skills /></RevealSection>
+      <RevealSection><SoftSkills /></RevealSection>
+      <RevealSection><Education /></RevealSection>
+      <RevealSection><Projects /></RevealSection>
+      <RevealSection><Contact /></RevealSection>
     </div>
   );
 };

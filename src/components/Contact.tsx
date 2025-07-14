@@ -1,4 +1,3 @@
-// src/components/ContactMe.tsx
 import React, { useState } from 'react';
 import {
   Box,
@@ -43,9 +42,10 @@ const ContactMe: React.FC = () => {
   ];
 
   return (
-    <Box className="contact-container">
+    <Box className="contact-container" id="contact">
       {/* Heading */}
       <Typography
+        className="heading-monoton"
         variant="h4"
         sx={{
           fontWeight: 'bold',
@@ -103,21 +103,21 @@ const ContactMe: React.FC = () => {
       <Box className="social-icons" sx={{ mt: 4, display: 'flex', gap: 2, justifyContent: 'center' }}>
         <Tooltip title="LinkedIn">
           <span className="icon-wrapper linkedin">
-            <IconButton href="https://linkedin.com" target="_blank">
+            <IconButton href="https://www.linkedin.com/in/abhishek-reddy-manam-1b5167204/" target="_blank" sx={{ color: '#0077b5' }}>
               <LinkedInIcon />
             </IconButton>
           </span>
         </Tooltip>
         <Tooltip title="GitHub">
           <span className="icon-wrapper github">
-            <IconButton href="https://github.com" target="_blank">
+            <IconButton href="https://github.com/Abhi-shek-reddy" target="_blank" sx={{ color: '#ffffff' }}>
               <GitHubIcon />
             </IconButton>
           </span>
         </Tooltip>
         <Tooltip title="Instagram">
           <span className="icon-wrapper instagram">
-            <IconButton href="https://instagram.com" target="_blank">
+            <IconButton href="https://www.instagram.com/aab.hi_/" target="_blank" sx={{ color: '#C13584' }}>
               <InstagramIcon />
             </IconButton>
           </span>

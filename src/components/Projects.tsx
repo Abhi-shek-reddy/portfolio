@@ -18,8 +18,16 @@ const projects = [
     summary:
       "Built a responsive Bookstore website using React (Vite + TypeScript) and FastAPI with Python/MongoDB, featuring live search, genre-based listings, cart/wishlist APIs, and smooth state handling via Context API.",
     skills: [
-      "React", "TypeScript", "Vite", "MUI", "Context API",
-      "FastAPI", "Python", "MongoDB", "REST API", "Responsive Design"
+      "React",
+      "TypeScript",
+      "Vite",
+      "MUI",
+      "Context API",
+      "FastAPI",
+      "Python",
+      "MongoDB",
+      "REST API",
+      "Responsive Design",
     ],
   },
   {
@@ -27,18 +35,14 @@ const projects = [
     image: "/images/hwPortfolio.png",
     summary:
       "Developed a responsive admin dashboard using React and MUI to manage users, delivery agents, and orders with tabular views, filters, and role-based UI components.",
-    skills: [
-      "React", "JavaScript", "MUI", "HTML5", "CSS3", "Dashboard Design"
-    ],
+    skills: ["React", "JavaScript", "MUI", "HTML5", "CSS3", "Dashboard Design"],
   },
   {
     name: "Blockysite ",
     image: "/images/bPortfolio.png",
     summary:
       "Worked on designing and developing the landing page and a custom IDE builder interface using React, focusing on responsive layout, smooth UI, and component reusability.",
-    skills: [
-      "React", "JavaScript", "HTML5", "CSS3", "Responsive Design"
-    ],
+    skills: ["React", "JavaScript", "HTML5", "CSS3", "Responsive Design"],
   },
 ];
 
@@ -48,6 +52,7 @@ const Projects: React.FC = () => {
 
   return (
     <Box
+      id="projects"
       className="project-section"
       sx={{
         backgroundColor: isDarkMode ? "#70f570ff" : "#90c5cbff",
@@ -57,12 +62,13 @@ const Projects: React.FC = () => {
       }}
     >
       <Typography
-        className="project-title"
+        className="heading-monoton"
         sx={{
           color: isDarkMode ? "#000000ff" : "#023E8A",
           fontWeight: "bold",
           fontSize: "2rem",
           mb: 4,
+          fontFamily: "'Monoton', cursive", // ✅ add this line!
         }}
       >
         🚀 Projects
@@ -109,12 +115,19 @@ const Projects: React.FC = () => {
 
                 <Typography
                   className="project-summary"
-                  sx={{ mb: 2, fontSize: "0.95rem", color: isDarkMode ? "#ccc" : "#e0e0e0" }}
+                  sx={{
+                    mb: 2,
+                    fontSize: "0.95rem",
+                    color: isDarkMode ? "#ccc" : "#e0e0e0",
+                  }}
                 >
                   {project.summary}
                 </Typography>
 
-                <Box className="project-skills" sx={{ mt: "auto", gap: 1, display: "flex", flexWrap: "wrap" }}>
+                <Box
+                  className="project-skills"
+                  sx={{ mt: "auto", gap: 1, display: "flex", flexWrap: "wrap" }}
+                >
                   {project.skills.map((skill, i) => (
                     <Chip
                       key={i}
@@ -124,7 +137,9 @@ const Projects: React.FC = () => {
                         backgroundColor: isDarkMode ? "#1b5e20" : "#e3f2fd",
                         color: isDarkMode ? "#00fa43" : "#0d47a1",
                         fontWeight: "500",
-                        border: `1px solid ${isDarkMode ? "#00fa43" : "#90caf9"}`,
+                        border: `1px solid ${
+                          isDarkMode ? "#00fa43" : "#90caf9"
+                        }`,
                       }}
                     />
                   ))}

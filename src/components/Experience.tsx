@@ -40,8 +40,9 @@ export default function Experience() {
   const borderColor = isDarkMode ? "#00fa43" : "#00bcd4";
 
   return (
-    <Box sx={{ px: 4, py: 6 }}>
+    <Box id="experience" sx={{ px: 4, py: 6 }}>
       <Typography
+      className="heading-monoton"
         variant="h4"
         gutterBottom
         sx={{

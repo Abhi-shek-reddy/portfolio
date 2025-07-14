@@ -12,11 +12,11 @@ import {
   Button,
   Tooltip,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
 interface NavBarProps {
   mode: "light" | "dark";
@@ -28,7 +28,15 @@ const NavBar: React.FC<NavBarProps> = ({ mode, setMode }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const navLinks = ["Home", "About", "Skills", "Projects", "Contact"];
+  const navLinks = [
+    "Home",
+    "About",
+    "Experience",
+    "Skills",
+    "Education",
+    "Projects",
+    "Contact",
+  ];
 
   const toggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open);
@@ -48,6 +56,7 @@ const NavBar: React.FC<NavBarProps> = ({ mode, setMode }) => {
             onClick={toggleDrawer(false)}
             component="a"
             href={`#${text.toLowerCase()}`}
+            sx={{ textTransform: "none" }}
           >
             <ListItemText primary={text} />
           </ListItem>
@@ -59,28 +68,41 @@ const NavBar: React.FC<NavBarProps> = ({ mode, setMode }) => {
   return (
     <Box
       sx={{
-        mt: "50px",
+        mt: 2,
         mx: "50px",
         borderRadius: "50px",
-        overflow: "hidden"
+        overflow: "hidden",
+        position: "sticky",
+        top: 0,
+        zIndex: theme.zIndex.appBar,
       }}
     >
       <AppBar
-        position="static"
+        position="sticky"
         elevation={4}
         sx={{
           backgroundColor: mode === "light" ? "#023E8A" : "#111",
-          color: "white",
-          borderRadius: "50px"
+          color: mode === "light" ? "#ffffffff" : "#00fa43ff",
+          borderRadius: "50px",
         }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography
             variant="h6"
-            component="div"
-            sx={{ fontWeight: "bold", letterSpacing: 1 }}
+            component="a"
+            href="#home"
+            sx={{
+              fontWeight: "bold",
+              letterSpacing: 1,
+              textDecoration: "none",
+              color: "inherit",
+              fontFamily: "'Fira Code', monospace",
+              "&:hover": {
+                opacity: 0.8,
+              },
+            }}
           >
-            Abhishek.dev
+            {"<Abhi/>"}
           </Typography>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -90,20 +112,34 @@ const NavBar: React.FC<NavBarProps> = ({ mode, setMode }) => {
                   key={text}
                   color="inherit"
                   href={`#${text.toLowerCase()}`}
+                  sx={{ textTransform: "none" }}
                 >
                   {text}
                 </Button>
               ))}
 
             {isMobile && (
-              <IconButton edge="end" color="inherit" onClick={toggleDrawer(true)}>
+              <IconButton
+                edge="end"
+                color="inherit"
+                onClick={toggleDrawer(true)}
+              >
                 <MenuIcon />
               </IconButton>
             )}
 
             <Tooltip title="Toggle Theme">
-              <IconButton onClick={toggleDarkMode} color="inherit">
-                {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+              <IconButton
+                onClick={toggleDarkMode}
+                color="inherit"
+                sx={{
+                  transition: "transform 0.3s ease",
+                  "&:hover": {
+                    transform: "scale(1.2)",
+                  },
+                }}
+              >
+                {mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
             </Tooltip>
           </Box>

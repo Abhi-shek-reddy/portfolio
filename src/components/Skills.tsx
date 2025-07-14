@@ -1,7 +1,7 @@
 // src/components/Skills.tsx
-import React from 'react';
-import { Box, Typography, Grid, Paper, useTheme } from '@mui/material';
-import './Skills.css';
+import React from "react";
+import { Box, Typography, Grid, Paper, useTheme } from "@mui/material";
+import "./Skills.css";
 
 const skills = [
   { name: "HTML5", icon: "./images/Html.svg" },
@@ -20,38 +20,45 @@ const skills = [
 
 const Skills: React.FC = () => {
   const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+  const isDarkMode = theme.palette.mode === "dark";
 
   return (
-    <Box sx={{ textAlign: 'center', px: 4, py: 6 }}>
+    <Box sx={{ textAlign: "center", px: 4, py: 6 }} id="skills">
       <Typography
         variant="h4"
         gutterBottom
+        className="heading-monoton"
         sx={{
-          color: isDarkMode ? '#00fa43' : '#007c91',
-          fontWeight: 'bold',
-          textAlign: 'center',
+          color: isDarkMode ? "#00fa43" : "#0288d1",
+          fontWeight: "bold",
+          textAlign: "center",
+          fontFamily: "inherit",
         }}
       >
         Skills
       </Typography>
+
       <Grid container spacing={3} justifyContent="center">
         {skills.map((skill) => (
           <Grid item key={skill.name}>
             <Paper
               elevation={3}
-              className={`skill-card ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
+              className={`skill-card ${
+                isDarkMode ? "dark-mode" : "light-mode"
+              }`}
               sx={{
-                backgroundColor: isDarkMode ? '#292c28ff' : '#e0f7fa',
+                backgroundColor: isDarkMode ? "#292c28ff" : "#e0f7fa",
               }}
             >
               <img src={skill.icon} alt={skill.name} className="skill-icon" />
               <Typography
                 variant="subtitle1"
-                className={`skill-name ${isDarkMode ? 'dark-text' : 'light-text'}`}
+                className={`skill-name ${
+                  isDarkMode ? "dark-text" : "light-text"
+                }`}
                 sx={{
-                  marginTop: '10px',
-                  color: '#000000',
+                  marginTop: "10px",
+                  color: "#000000",
                 }}
               >
                 {skill.name}

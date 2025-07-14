@@ -44,8 +44,9 @@ const Education: React.FC = () => {
   const borderColor = isDarkMode ? '#00fa43' : '#00bcd4';
 
   return (
-    <Box sx={{ px: 4, py: 6 }}>
+    <Box sx={{ px: 4, py: 6 }} id="education">
       <Typography
+      className="heading-monoton"
         variant="h4"
         gutterBottom
         sx={{

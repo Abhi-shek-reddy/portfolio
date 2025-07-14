@@ -18,6 +18,7 @@ const SoftSkills: React.FC = () => {
   return (
     <Box sx={{ px: 4, py: 8, textAlign: "center" }}>
       <Typography
+      className="heading-monoton"
         variant="h4"
         gutterBottom
         sx={{

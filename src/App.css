@@ -1,4 +1,29 @@
 /* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Tagesschrift&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arapey:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+.monoton-regular {
+  font-family: "Monoton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.arapey-regular {
+  font-family: "Arapey", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.tagesschrift-regular {
+  font-family: "Tagesschrift", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+/* .space-grotesk-<uniquifier> {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+} */
 html, body, #root {
   margin: 0;
   padding: 0;
@@ -7,6 +32,24 @@ html, body, #root {
 }
 
 body {
-  font-family: sans-serif;
-  background-color: #f8f8f8;
+ font-family: "Space Grotesk", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 900; /* or 300/500/700 depending on your style */
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
 }
+
+h2, h3, h4.heading-monoton {
+  font-family: 'Monoton', cursive !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.app section {
+  scroll-margin-top: 80px; /* for fixed navbar offset */
+}
+

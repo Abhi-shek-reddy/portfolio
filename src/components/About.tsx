@@ -10,6 +10,7 @@ const About: React.FC = () => {
 
   return (
     <Container
+    id="about"
       maxWidth="md"
       sx={{
         py: 10,
@@ -22,8 +23,10 @@ const About: React.FC = () => {
       <Box display="flex" alignItems="center" gap={1} mb={2}>
         <EmojiObjectsIcon sx={{ color: highlightColor }} />
         <Typography
+        
           variant="h4"
           fontWeight="bold"
+          className="heading-monoton"
           sx={{ color: highlightColor }}
         >
           About Me
