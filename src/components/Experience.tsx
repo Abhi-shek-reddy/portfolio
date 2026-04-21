@@ -183,7 +183,7 @@ const experiences = [
     role: "Full Stack Developer Intern",
     company: "Blockysite",
     location: "Hyderabad, India",
-    duration: "Jan 2023 - Jun 2023",
+    duration: "Jul 2022 - Jun 2023",
     description:
       "Built responsive landing pages and a full-featured admin dashboard with dynamic tables, filters, charts, and role-based access control. Developed backend APIs using Python and Django/Flask, handling authentication, CRUD operations, and business logic. Integrated REST APIs between frontend and backend and implemented JWT-based user authentication as part of complete full-stack application builds.",
     skills: [
