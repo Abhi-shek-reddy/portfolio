@@ -36,8 +36,8 @@ const App: React.FC<AppProps> = ({ mode, setMode }) => {
       <RevealSection><About /></RevealSection>
       <RevealSection><CodeContribution /></RevealSection>
       <RevealSection><Experience /></RevealSection>
-      <RevealSection><Skills /></RevealSection>
       <RevealSection><SoftSkills /></RevealSection>
+      <RevealSection><Skills /></RevealSection>
       <RevealSection><Education /></RevealSection>
       <RevealSection><Projects /></RevealSection>
       <RevealSection><Contact /></RevealSection>

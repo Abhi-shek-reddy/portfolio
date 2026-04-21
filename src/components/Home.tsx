@@ -42,6 +42,8 @@ const Home: React.FC = () => {
   // Typewriter Logic
   const titles = [
     "I am Abhishek Reddy..",
+    "I am Data Engineer..",
+    "I am Data Analyst..",
     "I am Frontend Developer..",
     "I am Full Stack Developer..",
     "I build amazing things..",

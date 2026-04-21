@@ -34,7 +34,7 @@ const Skills: React.FC = () => {
           textAlign: "center",
         }}
       >
-        Skills
+        Web Development Skills
       </Typography>
 
       <Box className="skills-grid">

@@ -1,3 +1,143 @@
+// // src/components/Experience.tsx
+// import {
+//   Box,
+//   Typography,
+//   Card,
+//   CardContent,
+//   Chip,
+//   Divider,
+//   useTheme,
+// } from "@mui/material";
+// import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+// import LocationOnIcon from "@mui/icons-material/LocationOn";
+// import "./Experience.css";
+
+// const experiences = [
+//   {
+//     role: "React Developer",
+//     company: "Digiuniv Technologies Private Limited",
+//     location: "Hyderabad, India",
+//     duration: "Jul 2023 - Jul 2024",
+//     description:
+//       "Designed and developed a full-featured Admin Dashboard and two responsive landing pages for the Hargharwala delivery platform. Collaborated on multiple frontend tasks, focusing on UI components, dashboard analytics, and production-ready layouts, while actively contributing to cross-functional development workflows.",
+//     skills: ["ReactJS", "HTML5", "CSS3", "MUI", "TypeScript", "Bootstrap", "Git", "GitHub"],
+//   },
+//   {
+//     role: "Frontend Web Developer",
+//     company: "Blockysite",
+//     location: "Hyderabad, India",
+//     duration: "Jan 2023 - Jun 2023",
+//     description:
+//       "Contributed to responsive frontend development by building visually appealing landing pages and a custom IDE interface. Focused on UI design, layout structuring, and component-level integration using modern web technologies.",
+//     skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Bootstrap", "Tailwind CSS"],
+//   },
+// ];
+
+// export default function Experience() {
+//   const theme = useTheme();
+//   const isDarkMode = theme.palette.mode === "dark";
+//   const borderColor = isDarkMode ? "#00fa43" : "#00bcd4";
+
+//   return (
+//     <Box id="experience" sx={{ px: 4, py: 6 }}>
+//       <Typography
+//       className="heading-monoton"
+//         variant="h4"
+//         gutterBottom
+//         sx={{
+//           fontWeight: "bold",
+//           mb: 4,
+//           color: borderColor,
+//         }}
+//       >
+//         Experience
+//       </Typography>
+
+//       {experiences.map((exp, index) => (
+//         <Box
+//           key={index}
+//           className="experience-card-wrapper"
+//           sx={{
+//             flex: 1,
+//             "--glow-color": isDarkMode ? "#00fa43" : "#00bcd4",
+//           }}
+//         >
+//           <Box sx={{ display: "flex", mb: 4, position: "relative" }}>
+//             {/* Timeline Dot & Line */}
+//             <Box sx={{ mr: 3, display: "flex", flexDirection: "column", alignItems: "center" }}>
+//               {index !== 0 && (
+//                 <Box sx={{ width: 2, flexGrow: 1, bgcolor: "grey.400", mb: 1 }} />
+//               )}
+//               <Box
+//                 sx={{
+//                   width: 12,
+//                   height: 12,
+//                   borderRadius: "50%",
+//                   bgcolor: borderColor,
+//                 }}
+//               />
+//               {index !== experiences.length - 1 && (
+//                 <Box sx={{ width: 2, flexGrow: 1, bgcolor: "grey.400", mt: 1 }} />
+//               )}
+//             </Box>
+
+//             {/* Experience Card */}
+//             <Card
+//               className="experience-animated-card"
+//               variant="outlined"
+//               sx={{
+//                 backgroundColor: isDarkMode ? "#000" : "#18182bff",
+//                 color: isDarkMode ? "#fff" : "white",
+//                 borderColor,
+//               }}
+//             >
+//               <CardContent>
+//                 <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+//                   {exp.role}
+//                 </Typography>
+//                 <Typography sx={{ display: "flex", alignItems: "center", gap: 1, mt: 0.5 }}>
+//                   <CalendarMonthIcon fontSize="small" />
+//                   {exp.duration}
+//                 </Typography>
+//                 <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+//                   <LocationOnIcon fontSize="small" />
+//                   {exp.company}, {exp.location}
+//                 </Typography>
+
+//                 <Typography sx={{ mt: 2, color: isDarkMode ? "#ccc" : "#00bcd4" }}>
+//                   {exp.description}
+//                 </Typography>
+
+//                 <Divider sx={{ my: 2, borderColor }} />
+
+//                 <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+//                   {exp.skills.map((skill, i) => (
+//                     <Chip
+//                       key={i}
+//                       label={skill}
+//                       color="primary"
+//                       variant="outlined"
+//                       sx={{
+//                         borderColor,
+//                         color: isDarkMode ? "#00fa43" : "#007c91",
+//                         transition: "all 0.3s ease",
+//                         '&:hover': {
+//                           borderColor: isDarkMode ? "#000" : "#18182bff",
+//                           backgroundColor: borderColor,
+//                           color: "#000",
+//                         },
+//                       }}
+//                     />
+//                   ))}
+//                 </Box>
+//               </CardContent>
+//             </Card>
+//           </Box>
+//         </Box>
+//       ))}
+//     </Box>
+//   );
+// }
 // src/components/Experience.tsx
 import {
   Box,
@@ -14,22 +154,43 @@ import "./Experience.css";
 
 const experiences = [
   {
-    role: "React Developer",
+    role: "Data Engineer",
     company: "Digiuniv Technologies Private Limited",
     location: "Hyderabad, India",
     duration: "Jul 2023 - Jul 2024",
     description:
-      "Designed and developed a full-featured Admin Dashboard and two responsive landing pages for the Hargharwala delivery platform. Collaborated on multiple frontend tasks, focusing on UI components, dashboard analytics, and production-ready layouts, while actively contributing to cross-functional development workflows.",
-    skills: ["ReactJS", "HTML5", "CSS3", "MUI", "TypeScript", "Bootstrap", "Git", "GitHub"],
+      "Independently designed and deployed end-to-end data pipelines on AWS and GCP to support analytics and business reporting. Led dbt project development in Snowflake — built staging, intermediate, and mart layers with testing and incremental models. Built real-time streaming pipelines using Apache Kafka and PySpark, and owned Airflow DAG development for orchestrating complex multi-step workflows. Containerized pipeline services using Docker and integrated deployments into CI/CD workflows.",
+    skills: [
+      "Python", "SQL", "Apache Spark", "PySpark", "Apache Kafka", "Apache Airflow",
+      "Snowflake", "dbt", "AWS", "GCP", "BigQuery", "Amazon S3", "AWS Glue",
+      "Amazon Redshift", "Docker", "ETL / ELT", "Data Modeling", "Git", "GitHub",
+    ],
   },
   {
-    role: "Frontend Web Developer",
+    role: "Data Engineering Intern",
+    company: "Digiuniv Technologies Private Limited",
+    location: "Hyderabad, India",
+    duration: "Jul 2022 - Jun 2023",
+    description:
+      "Assisted in building and maintaining ETL pipelines on AWS (S3, Glue, Lambda) and GCP (Cloud Storage, BigQuery), learning how data moves at scale in a real production environment. Worked with Apache Airflow to schedule and monitor workflows, and got introduced to dbt for transforming raw data in Snowflake. Wrote PySpark scripts for processing large datasets and explored Kafka for event streaming. Used Docker to spin up local development environments and contributed to Python utilities for data validation and pipeline automation.",
+    skills: [
+      "Python", "SQL", "PySpark", "Apache Airflow", "Snowflake", "dbt",
+      "Apache Kafka", "AWS", "GCP", "Amazon S3", "AWS Glue", "AWS Lambda",
+      "BigQuery", "Docker", "ETL / ELT", "Data Pipelines", "Git", "GitHub",
+    ],
+  },
+  {
+    role: "Full Stack Developer Intern",
     company: "Blockysite",
     location: "Hyderabad, India",
     duration: "Jan 2023 - Jun 2023",
     description:
-      "Contributed to responsive frontend development by building visually appealing landing pages and a custom IDE interface. Focused on UI design, layout structuring, and component-level integration using modern web technologies.",
-    skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Bootstrap", "Tailwind CSS"],
+      "Built responsive landing pages and a full-featured admin dashboard with dynamic tables, filters, charts, and role-based access control. Developed backend APIs using Python and Django/Flask, handling authentication, CRUD operations, and business logic. Integrated REST APIs between frontend and backend and implemented JWT-based user authentication as part of complete full-stack application builds.",
+    skills: [
+      "React", "TypeScript", "JavaScript", "HTML5", "CSS3",
+      "Python", "Django", "Flask", "REST APIs", "PostgreSQL",
+      "JWT Authentication", "Tailwind CSS", "Bootstrap", "Git", "GitHub",
+    ],
   },
 ];
 
@@ -41,7 +202,7 @@ export default function Experience() {
   return (
     <Box id="experience" sx={{ px: 4, py: 6 }}>
       <Typography
-      className="heading-monoton"
+        className="heading-monoton"
         variant="h4"
         gutterBottom
         sx={{
@@ -121,7 +282,7 @@ export default function Experience() {
                         borderColor,
                         color: isDarkMode ? "#00fa43" : "#007c91",
                         transition: "all 0.3s ease",
-                        '&:hover': {
+                        "&:hover": {
                           borderColor: isDarkMode ? "#000" : "#18182bff",
                           backgroundColor: borderColor,
                           color: "#000",

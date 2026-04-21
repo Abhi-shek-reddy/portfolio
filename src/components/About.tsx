@@ -45,14 +45,16 @@ const About: React.FC = () => {
           },
         }}
       >
-        I'm a passionate <strong>frontend developer</strong> with a strong foundation in <strong>web design</strong> and a growing skillset in <strong>backend technologies</strong>. Currently pursuing my Master's with a concentration in Web Design, I specialize in building responsive, scalable, and user-centric applications using <strong>React</strong>, <strong>TypeScript</strong>, and modern UI frameworks.
-        <br />
-        <br />
-        With hands-on experience in both frontend and backend development, I thrive in crafting seamless digital experiences that blend performance with visual appeal. I'm also deeply curious about emerging <strong>AI technologies</strong> and tools, and continuously explore how they can shape the future of web development.
-        <br />
-        <br />
-        Eager to contribute to real-world projects, I'm actively looking for <strong>internship</strong>, <strong>part-time</strong>, or <strong>full-time roles</strong> where I can collaborate with like-minded professionals, grow technically, and deliver innovative solutions.
-      </Typography>
+        I'm a Data Engineer with hands-on experience building scalable data pipelines on AWS and GCP. I enjoy the full data lifecycle — ingestion, transformation, orchestration, and delivering clean, reliable data that analytics and engineering teams can actually use.
+
+        My core stack includes Snowflake and dbt for warehousing and transformation, PySpark for large-scale data processing, Kafka for real-time streaming, Airflow for workflow orchestration, and Docker for keeping environments consistent. I've worked across both AWS (S3, Glue, Redshift, EMR) and GCP (BigQuery, Dataflow, Pub/Sub).
+
+        I also bring full stack development experience — building web applications, admin dashboards, and REST APIs using React, TypeScript, Python, Django, and PostgreSQL — which gives me a broader view of how data flows end to end in a product.
+
+        Currently pursuing my Master's and actively looking for full-time or internship opportunities in Data Engineering where I can contribute, grow, and build things that matter.
+
+        ⚙️ Data: Snowflake · dbt · PySpark · Kafka · Airflow · AWS · GCP · Docker · Python · SQL
+        💻 Dev: React · TypeScript · Django · Flask · PostgreSQL · REST APIs · Git</Typography>
     </Container>
   );
 };
