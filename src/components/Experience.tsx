@@ -1,301 +1,305 @@
-// // src/components/Experience.tsx
-// import {
-//   Box,
-//   Typography,
-//   Card,
-//   CardContent,
-//   Chip,
-//   Divider,
-//   useTheme,
-// } from "@mui/material";
-// import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-// import LocationOnIcon from "@mui/icons-material/LocationOn";
-// import "./Experience.css";
-
-// const experiences = [
-//   {
-//     role: "React Developer",
-//     company: "Digiuniv Technologies Private Limited",
-//     location: "Hyderabad, India",
-//     duration: "Jul 2023 - Jul 2024",
-//     description:
-//       "Designed and developed a full-featured Admin Dashboard and two responsive landing pages for the Hargharwala delivery platform. Collaborated on multiple frontend tasks, focusing on UI components, dashboard analytics, and production-ready layouts, while actively contributing to cross-functional development workflows.",
-//     skills: ["ReactJS", "HTML5", "CSS3", "MUI", "TypeScript", "Bootstrap", "Git", "GitHub"],
-//   },
-//   {
-//     role: "Frontend Web Developer",
-//     company: "Blockysite",
-//     location: "Hyderabad, India",
-//     duration: "Jan 2023 - Jun 2023",
-//     description:
-//       "Contributed to responsive frontend development by building visually appealing landing pages and a custom IDE interface. Focused on UI design, layout structuring, and component-level integration using modern web technologies.",
-//     skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Bootstrap", "Tailwind CSS"],
-//   },
-// ];
-
-// export default function Experience() {
-//   const theme = useTheme();
-//   const isDarkMode = theme.palette.mode === "dark";
-//   const borderColor = isDarkMode ? "#00fa43" : "#00bcd4";
-
-//   return (
-//     <Box id="experience" sx={{ px: 4, py: 6 }}>
-//       <Typography
-//       className="heading-monoton"
-//         variant="h4"
-//         gutterBottom
-//         sx={{
-//           fontWeight: "bold",
-//           mb: 4,
-//           color: borderColor,
-//         }}
-//       >
-//         Experience
-//       </Typography>
-
-//       {experiences.map((exp, index) => (
-//         <Box
-//           key={index}
-//           className="experience-card-wrapper"
-//           sx={{
-//             flex: 1,
-//             "--glow-color": isDarkMode ? "#00fa43" : "#00bcd4",
-//           }}
-//         >
-//           <Box sx={{ display: "flex", mb: 4, position: "relative" }}>
-//             {/* Timeline Dot & Line */}
-//             <Box sx={{ mr: 3, display: "flex", flexDirection: "column", alignItems: "center" }}>
-//               {index !== 0 && (
-//                 <Box sx={{ width: 2, flexGrow: 1, bgcolor: "grey.400", mb: 1 }} />
-//               )}
-//               <Box
-//                 sx={{
-//                   width: 12,
-//                   height: 12,
-//                   borderRadius: "50%",
-//                   bgcolor: borderColor,
-//                 }}
-//               />
-//               {index !== experiences.length - 1 && (
-//                 <Box sx={{ width: 2, flexGrow: 1, bgcolor: "grey.400", mt: 1 }} />
-//               )}
-//             </Box>
-
-//             {/* Experience Card */}
-//             <Card
-//               className="experience-animated-card"
-//               variant="outlined"
-//               sx={{
-//                 backgroundColor: isDarkMode ? "#000" : "#18182bff",
-//                 color: isDarkMode ? "#fff" : "white",
-//                 borderColor,
-//               }}
-//             >
-//               <CardContent>
-//                 <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-//                   {exp.role}
-//                 </Typography>
-//                 <Typography sx={{ display: "flex", alignItems: "center", gap: 1, mt: 0.5 }}>
-//                   <CalendarMonthIcon fontSize="small" />
-//                   {exp.duration}
-//                 </Typography>
-//                 <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-//                   <LocationOnIcon fontSize="small" />
-//                   {exp.company}, {exp.location}
-//                 </Typography>
-
-//                 <Typography sx={{ mt: 2, color: isDarkMode ? "#ccc" : "#00bcd4" }}>
-//                   {exp.description}
-//                 </Typography>
-
-//                 <Divider sx={{ my: 2, borderColor }} />
-
-//                 <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-//                   {exp.skills.map((skill, i) => (
-//                     <Chip
-//                       key={i}
-//                       label={skill}
-//                       color="primary"
-//                       variant="outlined"
-//                       sx={{
-//                         borderColor,
-//                         color: isDarkMode ? "#00fa43" : "#007c91",
-//                         transition: "all 0.3s ease",
-//                         '&:hover': {
-//                           borderColor: isDarkMode ? "#000" : "#18182bff",
-//                           backgroundColor: borderColor,
-//                           color: "#000",
-//                         },
-//                       }}
-//                     />
-//                   ))}
-//                 </Box>
-//               </CardContent>
-//             </Card>
-//           </Box>
-//         </Box>
-//       ))}
-//     </Box>
-//   );
-// }
-// src/components/Experience.tsx
-import {
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  Chip,
-  Divider,
-  useTheme,
-} from "@mui/material";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import "./Experience.css";
+import React, { useRef, useEffect, useState } from "react";
+import { Box, Typography, Chip, useTheme } from "@mui/material";
 
 const experiences = [
   {
     role: "Data Engineer",
-    company: "Digiuniv Technologies Private Limited",
+    company: "Digiuniv Technologies",
     location: "Hyderabad, India",
-    duration: "Jul 2023 - Jul 2024",
-    description:
-      "Independently designed and deployed end-to-end data pipelines on AWS and GCP to support analytics and business reporting. Led dbt project development in Snowflake — built staging, intermediate, and mart layers with testing and incremental models. Built real-time streaming pipelines using Apache Kafka and PySpark, and owned Airflow DAG development for orchestrating complex multi-step workflows. Containerized pipeline services using Docker and integrated deployments into CI/CD workflows.",
-    skills: [
-      "Python", "SQL", "Apache Spark", "PySpark", "Apache Kafka", "Apache Airflow",
-      "Snowflake", "dbt", "AWS", "GCP", "BigQuery", "Amazon S3", "AWS Glue",
-      "Amazon Redshift", "Docker", "ETL / ELT", "Data Modeling", "Git", "GitHub",
+    duration: "Jul 2023 – Jul 2024",
+    type: "Full-time",
+    cloud: "Azure · AWS · GCP",
+    description: [
+      "Architected and deployed production-grade pipelines on Azure Data Factory with 40+ linked services connecting ADLS Gen2, Azure SQL, and Cosmos DB — replacing fragile cron-based scripts with event-driven, parameterised ADF pipelines.",
+      "Built Azure Databricks notebooks and PySpark jobs for large-scale transformation workloads on ADLS Gen2 data lakes, leveraging Delta Lake for ACID-compliant incremental loads and time-travel auditing.",
+      "Developed dbt projects in Snowflake — staging, intermediate, and mart layers with schema tests, source freshness checks, and incremental materialisation strategies that cut full-refresh runtimes by ~60%.",
+      "Engineered real-time streaming pipelines using Apache Kafka and PySpark Structured Streaming, consuming from Azure Event Hubs Kafka endpoint and sinking processed events to Azure Synapse Analytics.",
+      "Owned Airflow DAG development on GCP Cloud Composer for cross-cloud orchestration spanning BigQuery, Dataflow, and AWS Glue jobs — with SLA alerting and retry logic.",
+      "Containerised all pipeline services with Docker and integrated deployments into Azure DevOps CI/CD pipelines with environment-specific variable groups.",
     ],
+    skills: [
+      "Azure Data Factory","Azure Databricks","Azure Synapse","ADLS Gen2",
+      "Azure Event Hubs","Azure DevOps","Delta Lake",
+      "Snowflake","dbt","PySpark","Apache Kafka","Apache Airflow",
+      "BigQuery","Dataflow","Cloud Composer",
+      "AWS S3","AWS Glue","Amazon Redshift",
+      "Docker","Python","SQL","Data Modeling",
+    ],
+    accentIdx: 0,
   },
   {
     role: "Data Engineering Intern",
-    company: "Digiuniv Technologies Private Limited",
+    company: "Digiuniv Technologies",
     location: "Hyderabad, India",
-    duration: "Jul 2022 - Jun 2023",
-    description:
-      "Assisted in building and maintaining ETL pipelines on AWS (S3, Glue, Lambda) and GCP (Cloud Storage, BigQuery), learning how data moves at scale in a real production environment. Worked with Apache Airflow to schedule and monitor workflows, and got introduced to dbt for transforming raw data in Snowflake. Wrote PySpark scripts for processing large datasets and explored Kafka for event streaming. Used Docker to spin up local development environments and contributed to Python utilities for data validation and pipeline automation.",
-    skills: [
-      "Python", "SQL", "PySpark", "Apache Airflow", "Snowflake", "dbt",
-      "Apache Kafka", "AWS", "GCP", "Amazon S3", "AWS Glue", "AWS Lambda",
-      "BigQuery", "Docker", "ETL / ELT", "Data Pipelines", "Git", "GitHub",
+    duration: "Jul 2022 – Jun 2023",
+    type: "Internship",
+    cloud: "AWS · GCP · Snowflake",
+    description: [
+      "Assisted senior engineers in building ETL pipelines on AWS (S3, Glue, Lambda, Step Functions) and GCP (Cloud Storage, BigQuery, Pub/Sub) — gaining hands-on exposure to how data moves at production scale.",
+      "Wrote and maintained Airflow DAGs to schedule and monitor multi-step workflows across AWS Glue and BigQuery load jobs, implementing dependency management and failure alerting via Slack webhooks.",
+      "Contributed to dbt model development in Snowflake — wrote SQL transformations, added generic and singular tests, and learned incremental materialisation patterns under senior guidance.",
+      "Developed PySpark scripts for large-dataset processing on AWS EMR clusters, including deduplication, null-handling, and schema enforcement jobs.",
+      "Explored Kafka consumer/producer patterns for event streaming use cases and used Docker to maintain reproducible local development environments.",
+      "Built Python utilities for data quality validation, row-count reconciliation between source and target, and automated pipeline alerting.",
     ],
+    skills: [
+      "Python","SQL","PySpark","Apache Airflow","Apache Kafka",
+      "Snowflake","dbt",
+      "AWS S3","AWS Glue","AWS Lambda","AWS EMR","Step Functions",
+      "BigQuery","Cloud Storage","Pub/Sub",
+      "Docker","Data Pipelines","Data Quality","Git",
+    ],
+    accentIdx: 1,
   },
   {
     role: "Full Stack Developer Intern",
     company: "Blockysite",
     location: "Hyderabad, India",
-    duration: "Jul 2022 - Jun 2023",
-    description:
-      "Built responsive landing pages and a full-featured admin dashboard with dynamic tables, filters, charts, and role-based access control. Developed backend APIs using Python and Django/Flask, handling authentication, CRUD operations, and business logic. Integrated REST APIs between frontend and backend and implemented JWT-based user authentication as part of complete full-stack application builds.",
-    skills: [
-      "React", "TypeScript", "JavaScript", "HTML5", "CSS3",
-      "Python", "Django", "Flask", "REST APIs", "PostgreSQL",
-      "JWT Authentication", "Tailwind CSS", "Bootstrap", "Git", "GitHub",
+    duration: "Jan 2022 – Jun 2022",
+    type: "Internship",
+    cloud: "Web · APIs · React",
+    description: [
+      "Built responsive landing pages and a full-featured admin dashboard with dynamic data tables, server-side filtering and pagination, Chart.js visualisations, and role-based access control.",
+      "Developed RESTful backend APIs using Python, Django, and Flask — implementing CRUD operations, business logic layers, and JWT-based authentication with refresh-token rotation.",
+      "Integrated frontend (React + TypeScript) with backend APIs using Axios, managing global auth state with React Context and caching API responses to reduce redundant network calls.",
+      "Designed and managed PostgreSQL schemas, wrote migration scripts, and optimised slow queries with proper indexing and query analysis.",
     ],
+    skills: [
+      "React","TypeScript","JavaScript","HTML5","CSS3","Tailwind CSS",
+      "Python","Django","Flask","REST APIs",
+      "PostgreSQL","JWT Authentication","Axios",
+      "Bootstrap","Git","GitHub",
+    ],
+    accentIdx: 2,
   },
 ];
 
+// Per-card accents — vivid on both dark substrates
+const ACCENTS_DARK  = ["#00ffb4", "#60a5fa", "#f9a8d4"];
+const ACCENTS_LIGHT = ["#fbbf24", "#93c5fd", "#f9a8d4"];
+
 export default function Experience() {
   const theme = useTheme();
-  const isDarkMode = theme.palette.mode === "dark";
-  const borderColor = isDarkMode ? "#00fa43" : "#00bcd4";
+  const isDark = theme.palette.mode === "dark";
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  // ── Tokens — navy+gold light / black+green dark ───────────────
+  const bg          = isDark ? "#080f14"  : "#091420";   // alternate tier
+  const cardBg      = isDark ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.04)";
+  const cardBorder  = isDark ? "rgba(255,255,255,0.07)"  : "rgba(99,179,255,0.1)";
+  const textPrimary = isDark ? "#e8f4f0"  : "#e0f2ff";
+  const textMuted   = isDark ? "rgba(232,244,240,0.5)"   : "rgba(224,242,255,0.48)";
+  const gridColor   = isDark ? "rgba(255,255,255,0.025)" : "rgba(99,179,255,0.03)";
+  const endLabel    = isDark ? "rgba(255,255,255,0.15)"  : "rgba(251,191,36,0.2)";
+  const badgeBg     = isDark ? "rgba(255,255,255,0.04)"  : "rgba(255,255,255,0.06)";
+  const chipBg      = isDark ? "rgba(255,255,255,0.05)"  : "rgba(255,255,255,0.05)";
+  const chipHoverBg = isDark ? "rgba(255,255,255,0.1)"   : "rgba(255,255,255,0.1)";
+
+  const accent0 = isDark ? ACCENTS_DARK[0] : ACCENTS_LIGHT[0];
+
+  // Card header tint per accent index
+  const headerTints: Record<number, string> = isDark
+    ? { 0: "rgba(0,255,180,0.04)",  1: "rgba(96,165,250,0.04)",  2: "rgba(249,168,212,0.04)" }
+    : { 0: "rgba(251,191,36,0.05)", 1: "rgba(147,197,253,0.05)", 2: "rgba(249,168,212,0.05)" };
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true); },
+      { threshold: 0.08 }
+    );
+    if (sectionRef.current) obs.observe(sectionRef.current);
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <Box id="experience" sx={{ px: 4, py: 6 }}>
-      <Typography
-        className="heading-monoton"
-        variant="h4"
-        gutterBottom
-        sx={{
-          fontWeight: "bold",
-          mb: 4,
-          color: borderColor,
-        }}
-      >
-        Experience
-      </Typography>
+    <Box
+      id="experience"
+      ref={sectionRef}
+      sx={{
+        position: "relative",
+        backgroundColor: bg,
+        py: { xs: 8, md: 12 },
+        px: { xs: 3, sm: 5, md: 10, lg: 16 },
+        overflow: "hidden",
+      }}
+    >
+      {/* grid */}
+      <Box sx={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        backgroundImage: `linear-gradient(${gridColor} 1px, transparent 1px), linear-gradient(90deg, ${gridColor} 1px, transparent 1px)`,
+        backgroundSize: "44px 44px",
+      }} />
 
-      {experiences.map((exp, index) => (
-        <Box
-          key={index}
-          className="experience-card-wrapper"
-          sx={{
-            flex: 1,
-            "--glow-color": isDarkMode ? "#00fa43" : "#00bcd4",
-          }}
-        >
-          <Box sx={{ display: "flex", mb: 4, position: "relative" }}>
-            {/* Timeline Dot & Line */}
-            <Box sx={{ mr: 3, display: "flex", flexDirection: "column", alignItems: "center" }}>
-              {index !== 0 && (
-                <Box sx={{ width: 2, flexGrow: 1, bgcolor: "grey.400", mb: 1 }} />
-              )}
-              <Box
-                sx={{
-                  width: 12,
-                  height: 12,
-                  borderRadius: "50%",
-                  bgcolor: borderColor,
-                }}
-              />
-              {index !== experiences.length - 1 && (
-                <Box sx={{ width: 2, flexGrow: 1, bgcolor: "grey.400", mt: 1 }} />
-              )}
-            </Box>
+      {/* section label */}
+      <Box sx={{
+        display: "flex", alignItems: "center", gap: 2, mb: 6,
+        opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(16px)",
+        transition: "all 0.6s ease",
+      }}>
+        <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", color: accent0, letterSpacing: "0.12em" }}>
+          03 /
+        </Typography>
+        <Box sx={{ flex: 1, height: "1px", background: cardBorder }} />
+        <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", color: textMuted, letterSpacing: "0.08em" }}>
+          experience.json
+        </Typography>
+      </Box>
 
-            {/* Experience Card */}
-            <Card
-              className="experience-animated-card"
-              variant="outlined"
-              sx={{
-                backgroundColor: isDarkMode ? "#000" : "#18182bff",
-                color: isDarkMode ? "#fff" : "white",
-                borderColor,
-              }}
-            >
-              <CardContent>
-                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                  {exp.role}
-                </Typography>
-                <Typography sx={{ display: "flex", alignItems: "center", gap: 1, mt: 0.5 }}>
-                  <CalendarMonthIcon fontSize="small" />
-                  {exp.duration}
-                </Typography>
-                <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                  <LocationOnIcon fontSize="small" />
-                  {exp.company}, {exp.location}
-                </Typography>
+      {/* heading */}
+      <Box sx={{
+        mb: 10,
+        opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)",
+        transition: "all 0.7s ease 0.1s",
+      }}>
+        <Typography sx={{
+          fontFamily: "'Outfit', sans-serif", fontWeight: 900,
+          fontSize: { xs: "2.4rem", sm: "3rem", md: "3.6rem" },
+          lineHeight: 0.95, letterSpacing: "-0.03em", color: textPrimary, mb: 1,
+        }}>
+          Work <span style={{ color: accent0 }}>Experience</span>
+        </Typography>
+        <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.72rem", color: textMuted, letterSpacing: "0.06em" }}>
+          {"// roles.filter(r => r.impact === \"high\")"}
+        </Typography>
+      </Box>
 
-                <Typography sx={{ mt: 2, color: isDarkMode ? "#ccc" : "#00bcd4" }}>
-                  {exp.description}
-                </Typography>
+      {/* timeline */}
+      <Box sx={{ position: "relative", zIndex: 1 }}>
+        <Box sx={{
+          position: "absolute",
+          left: { xs: 10, md: 18 }, top: 0, bottom: 0, width: "1px",
+          background: `linear-gradient(to bottom, ${cardBorder}, ${cardBorder} 80%, transparent)`,
+          zIndex: 0,
+        }} />
 
-                <Divider sx={{ my: 2, borderColor }} />
+        {experiences.map((exp, i) => {
+          const cardAccent = isDark ? ACCENTS_DARK[exp.accentIdx] : ACCENTS_LIGHT[exp.accentIdx];
+          return (
+            <Box key={i} sx={{
+              display: "flex",
+              gap: { xs: 3, md: 5 },
+              mb: i < experiences.length - 1 ? { xs: 6, md: 8 } : 0,
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateX(0)" : "translateX(-20px)",
+              transition: `all 0.7s ease ${0.2 + i * 0.15}s`,
+              position: "relative",
+            }}>
+              {/* dot */}
+              <Box sx={{
+                flexShrink: 0, width: { xs: 20, md: 36 },
+                display: "flex", flexDirection: "column", alignItems: "center",
+                pt: "2px", zIndex: 1,
+              }}>
+                <Box sx={{
+                  width: { xs: 12, md: 14 }, height: { xs: 12, md: 14 },
+                  borderRadius: "50%", background: cardAccent,
+                  border: `3px solid ${bg}`,
+                  boxShadow: `0 0 0 1px ${cardAccent}`,
+                  flexShrink: 0,
+                }} />
+              </Box>
 
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-                  {exp.skills.map((skill, i) => (
-                    <Chip
-                      key={i}
-                      label={skill}
-                      color="primary"
-                      variant="outlined"
-                      sx={{
-                        borderColor,
-                        color: isDarkMode ? "#00fa43" : "#007c91",
-                        transition: "all 0.3s ease",
-                        "&:hover": {
-                          borderColor: isDarkMode ? "#000" : "#18182bff",
-                          backgroundColor: borderColor,
-                          color: "#000",
-                        },
-                      }}
-                    />
+              {/* card */}
+              <Box sx={{
+                flex: 1, border: `1px solid ${cardBorder}`,
+                borderRadius: "8px", background: cardBg, overflow: "hidden",
+                transition: "border-color 0.25s ease",
+                "&:hover": { borderColor: cardAccent },
+              }}>
+                {/* top bar */}
+                <Box sx={{
+                  px: { xs: 2.5, md: 3 }, py: 2,
+                  borderBottom: `1px solid ${cardBorder}`,
+                  background: headerTints[exp.accentIdx] ?? "rgba(255,255,255,0.03)",
+                  display: "flex", flexWrap: "wrap",
+                  justifyContent: "space-between", alignItems: "flex-start", gap: 1.5,
+                }}>
+                  <Box>
+                    <Typography sx={{
+                      fontFamily: "'Outfit', sans-serif", fontWeight: 800,
+                      fontSize: { xs: "1rem", md: "1.15rem" },
+                      color: textPrimary, lineHeight: 1.2, mb: 0.4,
+                    }}>
+                      {exp.role}
+                    </Typography>
+                    <Typography sx={{ fontFamily: "'Outfit', sans-serif", fontSize: "0.85rem", color: cardAccent, fontWeight: 600 }}>
+                      {exp.company}
+                    </Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", flexDirection: "column", alignItems: { xs: "flex-start", sm: "flex-end" }, gap: 0.5 }}>
+                    <Box sx={{
+                      display: "inline-flex", alignItems: "center", gap: 0.7,
+                      px: 1.2, py: 0.3,
+                      border: `1px solid ${cardBorder}`, borderRadius: "3px",
+                      background: badgeBg,
+                    }}>
+                      <Box sx={{ width: 5, height: 5, borderRadius: "50%", background: cardAccent }} />
+                      <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", color: textMuted, letterSpacing: "0.06em" }}>
+                        {exp.type}
+                      </Typography>
+                    </Box>
+                    <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.62rem", color: textMuted, letterSpacing: "0.04em" }}>
+                      {exp.duration}
+                    </Typography>
+                    <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", color: textMuted }}>
+                      📍 {exp.location}
+                    </Typography>
+                  </Box>
+                </Box>
+
+                {/* cloud */}
+                <Box sx={{ px: { xs: 2.5, md: 3 }, pt: 2, pb: 0.5, display: "flex", alignItems: "center", gap: 1 }}>
+                  <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.58rem", color: textMuted, letterSpacing: "0.06em" }}>
+                    stack //
+                  </Typography>
+                  <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.62rem", color: cardAccent, fontWeight: 700, letterSpacing: "0.05em" }}>
+                    {exp.cloud}
+                  </Typography>
+                </Box>
+
+                {/* bullets */}
+                <Box sx={{ px: { xs: 2.5, md: 3 }, pt: 1.5, pb: 2.5, display: "flex", flexDirection: "column", gap: 1.2 }}>
+                  {exp.description.map((point, pi) => (
+                    <Box key={pi} sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
+                      <Box sx={{ width: 5, height: 5, borderRadius: "50%", background: cardAccent, opacity: 0.7, flexShrink: 0, mt: "7px" }} />
+                      <Typography sx={{ fontFamily: "'Outfit', sans-serif", fontSize: { xs: "0.85rem", md: "0.9rem" }, lineHeight: 1.72, color: textMuted }}>
+                        {point}
+                      </Typography>
+                    </Box>
                   ))}
                 </Box>
-              </CardContent>
-            </Card>
-          </Box>
-        </Box>
-      ))}
+
+                {/* chips */}
+                <Box sx={{ px: { xs: 2.5, md: 3 }, pb: 2.5, borderTop: `1px solid ${cardBorder}`, pt: 2, display: "flex", flexWrap: "wrap", gap: 0.8 }}>
+                  {exp.skills.map((skill, si) => (
+                    <Chip key={si} label={skill} size="small" sx={{
+                      fontFamily: "'Outfit', sans-serif", fontWeight: 600,
+                      fontSize: "0.68rem", height: 24, borderRadius: "3px",
+                      background: chipBg, color: textMuted,
+                      border: `1px solid ${cardBorder}`,
+                      "& .MuiChip-label": { px: 1 },
+                      "&:hover": { background: chipHoverBg, color: cardAccent, borderColor: cardAccent },
+                      transition: "all 0.18s ease", cursor: "default",
+                    }} />
+                  ))}
+                </Box>
+              </Box>
+            </Box>
+          );
+        })}
+      </Box>
+
+      {/* bottom line */}
+      <Box sx={{
+        mt: 10, display: "flex", alignItems: "center", gap: 2,
+        opacity: visible ? 1 : 0, transition: "all 0.7s ease 0.8s",
+      }}>
+        <Box sx={{ flex: 1, height: "1px", background: cardBorder }} />
+        <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", color: endLabel, letterSpacing: "0.08em" }}>
+          end_of_section
+        </Typography>
+      </Box>
     </Box>
   );
 }

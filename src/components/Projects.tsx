@@ -1,372 +1,302 @@
-// import React from "react";
-// import {
-//   Box,
-//   Typography,
-//   Card,
-//   CardMedia,
-//   CardContent,
-//   Chip,
-//   useTheme,
-// } from "@mui/material";
-// import "./Projects.css";
-
-// const projects = [
-//   {
-//     name: "Bookstore Website",
-//     image: "/images/bsPortfolio.png",
-//     summary:
-//       "Built a responsive Bookstore website using React (Vite + TypeScript) and FastAPI with Python/MongoDB, featuring live search, genre-based listings, cart/wishlist APIs, and smooth state handling via Context API.",
-//     skills: [
-//       "React",
-//       "TypeScript",
-//       "Vite",
-//       "MUI",
-//       "Context API",
-//       "FastAPI",
-//       "Python",
-//       "MongoDB",
-//       "REST API",
-//       "Responsive Design",
-//     ],
-//   },
-//   {
-//     name: "Admin DashBoard",
-//     image: "/images/hwPortfolio.png",
-//     summary:
-//       "Developed a responsive admin dashboard using React and MUI to manage users, delivery agents, and orders with tabular views, filters, and role-based UI components.",
-//     skills: ["React", "JavaScript", "MUI", "HTML5", "CSS3", "Dashboard Design"],
-//   },
-//   {
-//     name: "Blockysite ",
-//     image: "/images/bPortfolio.png",
-//     summary:
-//       "Worked on designing and developing the landing page and a custom IDE builder interface using React, focusing on responsive layout, smooth UI, and component reusability.",
-//     skills: ["React", "JavaScript", "HTML5", "CSS3", "Responsive Design"],
-//   },
-// ];
-
-// const Projects: React.FC = () => {
-//   const theme = useTheme();
-//   const isDarkMode = theme.palette.mode === "dark";
-
-//   return (
-//     <Box
-//       id="projects"
-//       className="project-section"
-//       sx={{
-//         backgroundColor: isDarkMode ? "#70f570ff" : "#90c5cbff",
-//         px: 4,
-//         py: 6,
-//         minHeight: "100vh",
-//       }}
-//     >
-//       <Typography
-//         className="heading-monoton"
-//         sx={{
-//           color: isDarkMode ? "#000000ff" : "#023E8A",
-//           fontWeight: "bold",
-//           fontSize: "2rem",
-//           mb: 4,
-//           fontFamily: "'Monoton', cursive",
-//           textAlign: "center",
-//         }}
-//       >
-//         🚀 Projects
-//       </Typography>
-
-//       <Box
-//         sx={{
-//           display: "flex",
-//           flexWrap: "wrap",
-//           justifyContent: "center",
-//           gap: 4,
-//         }}
-//       >
-//         {projects.map((project, index) => (
-//           <Box
-//             key={index}
-//             sx={{
-//               width: { xs: "100%", sm: "80%", md: "30%" },
-//               display: "flex",
-//             }}
-//             className="project-grid-item"
-//           >
-//             <Card
-//               className="project-card"
-//               sx={{
-//                 backgroundColor: isDarkMode ? "#000" : "#021230ff",
-//                 color: isDarkMode ? "#ffffff" : "#fff",
-//                 height: "100%",
-//                 display: "flex",
-//                 flexDirection: "column",
-//                 width: "100%",
-//               }}
-//             >
-//               <CardMedia
-//                 component="img"
-//                 image={project.image}
-//                 alt={project.name}
-//                 className="project-image"
-//               />
-//               <CardContent className="project-content" sx={{ flexGrow: 1 }}>
-//                 <Typography
-//                   className="project-name"
-//                   sx={{
-//                     color: isDarkMode ? "#00fa43" : "#ffffff",
-//                     fontWeight: "bold",
-//                     fontSize: "1.2rem",
-//                     mb: 1.5,
-//                   }}
-//                 >
-//                   {project.name}
-//                 </Typography>
-
-//                 <Typography
-//                   className="project-summary"
-//                   sx={{
-//                     mb: 2,
-//                     fontSize: "0.95rem",
-//                     color: isDarkMode ? "#ccc" : "#e0e0e0",
-//                   }}
-//                 >
-//                   {project.summary}
-//                 </Typography>
-
-//                 <Box
-//                   className="project-skills"
-//                   sx={{ mt: "auto", gap: 1, display: "flex", flexWrap: "wrap" }}
-//                 >
-//                   {project.skills.map((skill, i) => (
-//                     <Chip
-//                       key={i}
-//                       label={skill}
-//                       size="small"
-//                       sx={{
-//                         backgroundColor: isDarkMode ? "#1b5e20" : "#e3f2fd",
-//                         color: isDarkMode ? "#00fa43" : "#0d47a1",
-//                         fontWeight: "500",
-//                         border: `1px solid ${
-//                           isDarkMode ? "#00fa43" : "#90caf9"
-//                         }`,
-//                       }}
-//                     />
-//                   ))}
-//                 </Box>
-//               </CardContent>
-//             </Card>
-//           </Box>
-//         ))}
-//       </Box>
-//     </Box>
-//   );
-// };
-
-// export default Projects;
-import React from "react";
-import {
-  Box,
-  Typography,
-  Card,
-  CardMedia,
-  CardContent,
-  Chip,
-  useTheme,
-} from "@mui/material";
+import React, { useRef, useEffect, useState } from "react";
+import { Box, Typography, Chip, useTheme } from "@mui/material";
+import GitHubIcon    from "@mui/icons-material/GitHub";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const projects = [
-  // 🔥 1. DATA ENGINEERING PROJECT
   {
-    name: "End-to-End Data Pipeline",
+    num: "01",
+    name: "Azure End-to-End Data Lakehouse",
+    category: "Data Engineering · Azure",
     image: "/images/dataEng.png",
-    summary:
-      "Built a complete data pipeline using AWS S3, Snowflake, and DBT. Implemented data ingestion, transformation, and analytics-ready models with incremental loading.",
-    skills: [
-      "SQL",
-      "DBT",
-      "Snowflake",
-      "AWS S3",
-      "ETL",
-      "Data Modeling",
-    ],
+    summary: "Architected a production-grade lakehouse on Azure using ADF for orchestration, Databricks + PySpark for large-scale transformation, Delta Lake for ACID-compliant storage, and Synapse Analytics for BI-ready serving. Implemented parameterised ADF pipelines, schema enforcement, and automated data quality checks across bronze, silver, and gold layers.",
+    skills: ["Azure Data Factory","Azure Databricks","Delta Lake","Azure Synapse","ADLS Gen2","PySpark","Python","SQL"],
+    accentDark: "#00ffb4", accentLight: "#fbbf24",
+    github: "#", live: "",
   },
-
-  // 🔥 2. AWS + SNOWFLAKE + DBT PROJECT
   {
-    name: "Modern Data Warehouse Project",
+    num: "02",
+    name: "Modern Data Warehouse — dbt + Snowflake",
+    category: "Data Engineering · Cloud",
     image: "/images/snowflake.png",
-    summary:
-      "Designed a modern data warehouse using Snowflake and DBT with staging, transformation layers, and snapshot tracking. Integrated cloud storage (S3) for scalable data ingestion.",
-    skills: [
-      "Snowflake",
-      "DBT",
-      "AWS",
-      "SQL",
-      "Data Warehousing",
-      "Snapshots",
-    ],
+    summary: "Designed a multi-layer data warehouse in Snowflake using dbt for staging, intermediate, and mart transformations. Built incremental models, snapshot tracking for SCD Type 2, source freshness checks, and schema tests. Integrated AWS S3 and Glue for scalable raw data ingestion into Snowflake external stages.",
+    skills: ["Snowflake","dbt","AWS S3","AWS Glue","SQL","Data Modeling","ETL/ELT","Snapshots"],
+    accentDark: "#60a5fa", accentLight: "#93c5fd",
+    github: "#", live: "",
   },
-
-  // 🔥 3. FULLSTACK PROJECT
   {
-    name: "BookishBeacon (Fullstack)",
+    num: "03",
+    name: "Real-Time Streaming Pipeline — Kafka + PySpark",
+    category: "Data Engineering · Streaming",
+    image: "/images/dataEng.png",
+    summary: "Built a real-time event streaming pipeline using Apache Kafka as the message broker and PySpark Structured Streaming for stateful processing. Consumed from Azure Event Hubs Kafka endpoint, transformed and aggregated events, and sinked to both Snowflake and ADLS Gen2 via Delta Lake. Orchestrated with Apache Airflow.",
+    skills: ["Apache Kafka","PySpark","Azure Event Hubs","Apache Airflow","Delta Lake","Snowflake","Docker","Python"],
+    accentDark: "#fbbf24", accentLight: "#fb923c",
+    github: "#", live: "",
+  },
+  {
+    num: "04",
+    name: "GCP Data Pipeline — BigQuery + Dataflow",
+    category: "Data Engineering · GCP",
+    image: "/images/dataEng.png",
+    summary: "Engineered a batch and streaming data pipeline on GCP using Cloud Storage as the landing zone, Dataflow for distributed data processing, and BigQuery as the analytical warehouse. Orchestrated multi-step workflows with Cloud Composer (Airflow) and implemented Pub/Sub-triggered pipeline execution for near-real-time ingestion.",
+    skills: ["BigQuery","Dataflow","Cloud Composer","Pub/Sub","GCS","Apache Beam","Python","SQL"],
+    accentDark: "#a78bfa", accentLight: "#a78bfa",
+    github: "#", live: "",
+  },
+  {
+    num: "05",
+    name: "BookishBeacon — Full Stack Platform",
+    category: "Full Stack · React · FastAPI",
     image: "/images/bsPortfolio.png",
-    summary:
-      "Developed a fullstack bookstore platform with React (TypeScript) and FastAPI. Includes cart, search, wishlist, and responsive UI with API integration.",
-    skills: [
-      "React",
-      "TypeScript",
-      "FastAPI",
-      "Python",
-      "MongoDB",
-      "REST API",
-    ],
+    summary: "Developed a full-stack bookstore platform with React and TypeScript on the frontend and FastAPI on the backend. Features include cart management, search with filters, wishlist, JWT authentication, and a PostgreSQL-backed REST API. Containerised with Docker and deployed with CI/CD.",
+    skills: ["React","TypeScript","FastAPI","Python","PostgreSQL","MongoDB","REST API","Docker","JWT"],
+    accentDark: "#f9a8d4", accentLight: "#f9a8d4",
+    github: "#", live: "#",
   },
-
   {
-    name: "Admin Dashboard",
+    num: "06",
+    name: "Admin Dashboard — Role-Based UI",
+    category: "Full Stack · React · Django",
     image: "/images/hwPortfolio.png",
-    summary:
-      "Built an admin dashboard with role-based UI, tables, filters, and responsive design using React and MUI.",
-    skills: ["React", "MUI", "JavaScript", "Dashboard UI"],
-  },
-
-  {
-    name: "BlockySite Builder",
-    image: "/images/bPortfolio.png",
-    summary:
-      "Created a responsive UI and IDE builder layout focusing on component reuse and smooth user experience.",
-    skills: ["React", "HTML", "CSS", "UI Design"],
+    summary: "Built a full-featured admin dashboard with role-based access control, dynamic server-side tables with filtering and pagination, Chart.js analytics visualisations, and a Django REST API backend. JWT-authenticated with refresh-token rotation and a PostgreSQL data layer.",
+    skills: ["React","TypeScript","Django","PostgreSQL","MUI","Chart.js","JWT","REST API"],
+    accentDark: "#34d399", accentLight: "#34d399",
+    github: "#", live: "",
   },
 ];
 
 const Projects: React.FC = () => {
   const theme = useTheme();
-  const isDarkMode = theme.palette.mode === "dark";
+  const isDark = theme.palette.mode === "dark";
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [hovered, setHovered] = useState<number | null>(null);
+
+  // ── Tokens — navy+gold light / black+green dark ───────────────
+  // Primary bg tier (same as Home, AzureSkills)
+  const bg            = isDark ? "#05090e"  : "#0d1b2a";
+  const cardBg        = isDark ? "rgba(255,255,255,0.03)"  : "rgba(255,255,255,0.04)";
+  const cardBorder    = isDark ? "rgba(255,255,255,0.07)"  : "rgba(99,179,255,0.1)";
+  const textPrimary   = isDark ? "#e8f4f0"  : "#e0f2ff";
+  const textMuted     = isDark ? "rgba(232,244,240,0.5)"   : "rgba(224,242,255,0.48)";
+  const gridColor     = isDark ? "rgba(0,255,180,0.03)"    : "rgba(99,179,255,0.04)";
+  const sectionAccent = isDark ? "#00ffb4"  : "#fbbf24";
+  const endLabel      = isDark ? "rgba(0,255,180,0.2)"     : "rgba(251,191,36,0.2)";
+  const overlayBg     = isDark ? "rgba(5,9,14,0.85)"       : "rgba(13,27,42,0.7)";
+  const badgeBg       = isDark ? "rgba(5,9,14,0.82)"       : "rgba(13,27,42,0.75)";
+  const chipBg        = isDark ? "rgba(255,255,255,0.05)"  : "rgba(255,255,255,0.05)";
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true); },
+      { threshold: 0.05 }
+    );
+    if (sectionRef.current) obs.observe(sectionRef.current);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <Box
       id="projects"
+      ref={sectionRef}
       sx={{
-        px: 4,
-        py: 10,
-
-        // 🔥 ADVANCED BACKGROUND
-        background: isDarkMode
-          ? `
-        radial-gradient(circle at top right, rgba(0,255,128,0.08), transparent 40%),
-        linear-gradient(to bottom, #0b0b0f, #111)
-      `
-          : `
-        radial-gradient(circle at top right, rgba(0,188,212,0.1), transparent 40%),
-        linear-gradient(to bottom, #01171aff, #021230)
-      `,
+        position: "relative",
+        backgroundColor: bg,
+        py: { xs: 8, md: 12 },
+        px: { xs: 3, sm: 5, md: 10, lg: 16 },
+        overflow: "hidden",
       }}
     >
-      {/* 🔥 GLOW EFFECT */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: -100,
-          left: "30%",
-          width: 300,
-          height: 300,
-          background: "rgba(255,77,141,0.2)",
-          filter: "blur(120px)",
-          zIndex: 0,
-        }}
-      />
+      {/* grid */}
+      <Box sx={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        backgroundImage: `linear-gradient(${gridColor} 1px, transparent 1px), linear-gradient(90deg, ${gridColor} 1px, transparent 1px)`,
+        backgroundSize: "44px 44px",
+      }} />
 
-      {/* TITLE */}
-      <Typography
-        variant="h4"
-        gutterBottom
-        className="heading-monoton"
-        sx={{
-          color: isDarkMode ? "#00fa43" : "#00bcd4",
-          fontWeight: "bold",
-          textAlign: "center",
-        }}
-      >
-        Projects
-      </Typography>
+      {/* section label */}
+      <Box sx={{
+        display: "flex", alignItems: "center", gap: 2, mb: 6,
+        opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(16px)",
+        transition: "all 0.6s ease",
+      }}>
+        <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", color: sectionAccent, letterSpacing: "0.12em" }}>
+          06 /
+        </Typography>
+        <Box sx={{ flex: 1, height: "1px", background: cardBorder }} />
+        <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", color: textMuted, letterSpacing: "0.08em" }}>
+          projects.index
+        </Typography>
+      </Box>
 
-      {/* GRID */}
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            xs: "1fr",
-            sm: "1fr",
-            md: "repeat(2, 1fr)",
-            lg: "repeat(3, 1fr)",
-          },
-          gap: 4,
-          position: "relative",
-          zIndex: 1,
-        }}
-      >
-        {projects.map((project, index) => (
-          <Card
-            key={index}
-            sx={{
-              borderRadius: "16px",
-              overflow: "hidden",
-              background: isDarkMode ? "rgba(255,255,255,0.05)" : "#fff",
-              backdropFilter: "blur(10px)",
-              color: isDarkMode ? "#fff" : "#000",
-              transition: "0.3s",
-              "&:hover": {
-                transform: "translateY(-10px)",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
-              },
-            }}
-          >
-            <CardMedia
-              component="img"
-              image={project.image}
-              sx={{ height: 180 }}
-            />
+      {/* heading */}
+      <Box sx={{
+        mb: 10,
+        opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)",
+        transition: "all 0.7s ease 0.1s",
+      }}>
+        <Typography sx={{
+          fontFamily: "'Outfit', sans-serif", fontWeight: 900,
+          fontSize: { xs: "2.4rem", sm: "3rem", md: "3.6rem" },
+          lineHeight: 0.95, letterSpacing: "-0.03em", color: textPrimary, mb: 1,
+        }}>
+          Selected <span style={{ color: sectionAccent }}>Projects</span>
+        </Typography>
+        <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.72rem", color: textMuted, letterSpacing: "0.06em" }}>
+          {'// projects.filter(p => p.impact === "high").sort()'}
+        </Typography>
+      </Box>
 
-            <CardContent>
-              <Typography
-                sx={{
-                  fontWeight: "bold",
-                  fontSize: "1.2rem",
-                  mb: 1,
-                  color: isDarkMode ? "#ff4d8d" : "#023E8A",
-                }}
-              >
-                {project.name}
-              </Typography>
-
-              <Typography
-                sx={{
-                  fontSize: "0.9rem",
-                  mb: 2,
-                  color: isDarkMode ? "#bbb" : "#555",
-                }}
-              >
-                {project.summary}
-              </Typography>
-
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-                {project.skills.map((skill, i) => (
-                  <Chip
-                    key={i}
-                    label={skill}
-                    size="small"
-                    sx={{
-                      background: isDarkMode ? "#1a1a1a" : "#e3f2fd",
-                      color: isDarkMode ? "#00fa43" : "#0d47a1",
-                      border: `1px solid ${isDarkMode ? "#00fa43" : "#90caf9"
-                        }`,
-                    }}
-                  />
-                ))}
+      {/* project grid */}
+      <Box sx={{
+        position: "relative", zIndex: 1,
+        display: "grid",
+        gridTemplateColumns: { xs: "1fr", md: "repeat(2,1fr)", lg: "repeat(3,1fr)" },
+        gap: 2.5,
+      }}>
+        {projects.map((project, i) => {
+          const accent = isDark ? project.accentDark : project.accentLight;
+          const isHov  = hovered === i;
+          return (
+            <Box
+              key={i}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+              sx={{
+                border: `1px solid ${isHov ? accent : cardBorder}`,
+                borderRadius: "8px",
+                background: cardBg,
+                overflow: "hidden",
+                display: "flex", flexDirection: "column",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0)" : "translateY(28px)",
+                transition: `opacity 0.7s ease ${0.1 + i * 0.08}s, transform 0.7s ease ${0.1 + i * 0.08}s, border-color 0.22s ease, box-shadow 0.22s ease`,
+                boxShadow: isHov
+                  ? `0 16px 48px rgba(0,0,0,0.55), 0 0 0 1px ${accent}22`
+                  : "none",
+              }}
+            >
+              {/* image */}
+              <Box sx={{
+                position: "relative", height: 180, overflow: "hidden",
+                borderBottom: `1px solid ${cardBorder}`, flexShrink: 0,
+              }}>
+                <Box component="img" src={project.image} alt={project.name} sx={{
+                  width: "100%", height: "100%", objectFit: "cover", display: "block",
+                  transition: "transform 0.5s ease",
+                  transform: isHov ? "scale(1.05)" : "scale(1)",
+                  filter: "brightness(0.72)",
+                }} />
+                {/* gradient overlay */}
+                <Box sx={{
+                  position: "absolute", inset: 0,
+                  background: `linear-gradient(to top, ${overlayBg} 0%, transparent 60%)`,
+                }} />
+                {/* number badge */}
+                <Box sx={{
+                  position: "absolute", top: 12, left: 12,
+                  px: 1, py: 0.3,
+                  border: `1px solid ${accent}55`, borderRadius: "3px",
+                  background: badgeBg, backdropFilter: "blur(8px)",
+                }}>
+                  <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.58rem", color: accent, letterSpacing: "0.08em" }}>
+                    {project.num}
+                  </Typography>
+                </Box>
+                {/* category badge */}
+                <Box sx={{
+                  position: "absolute", top: 12, right: 12,
+                  px: 1, py: 0.3,
+                  border: `1px solid ${cardBorder}`, borderRadius: "3px",
+                  background: badgeBg, backdropFilter: "blur(8px)",
+                }}>
+                  <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.55rem", color: textMuted, letterSpacing: "0.05em" }}>
+                    {project.category}
+                  </Typography>
+                </Box>
               </Box>
-            </CardContent>
-          </Card>
-        ))}
+
+              {/* content */}
+              <Box sx={{ p: { xs: 2, md: 2.5 }, flex: 1, display: "flex", flexDirection: "column", gap: 1.5 }}>
+                {/* title + links */}
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 1 }}>
+                  <Typography sx={{
+                    fontFamily: "'Outfit', sans-serif", fontWeight: 800,
+                    fontSize: { xs: "1rem", md: "1.05rem" },
+                    color: isHov ? accent : textPrimary,
+                    lineHeight: 1.25, transition: "color 0.2s ease",
+                  }}>
+                    {project.name}
+                  </Typography>
+                  <Box sx={{ display: "flex", gap: 0.8, flexShrink: 0 }}>
+                    {project.github && (
+                      <Box component="a" href={project.github} target="_blank" aria-label="GitHub"
+                        sx={{
+                          width: 28, height: 28, border: `1px solid ${cardBorder}`,
+                          borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center",
+                          color: textMuted, textDecoration: "none", transition: "all 0.18s ease",
+                          "&:hover": { borderColor: accent, color: accent },
+                        }}
+                      >
+                        <GitHubIcon sx={{ fontSize: 14 }} />
+                      </Box>
+                    )}
+                    {project.live && (
+                      <Box component="a" href={project.live} target="_blank" aria-label="Live"
+                        sx={{
+                          width: 28, height: 28, border: `1px solid ${cardBorder}`,
+                          borderRadius: "5px", display: "flex", alignItems: "center", justifyContent: "center",
+                          color: textMuted, textDecoration: "none", transition: "all 0.18s ease",
+                          "&:hover": { borderColor: accent, color: accent },
+                        }}
+                      >
+                        <OpenInNewIcon sx={{ fontSize: 14 }} />
+                      </Box>
+                    )}
+                  </Box>
+                </Box>
+
+                {/* summary */}
+                <Typography sx={{
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: { xs: "0.82rem", md: "0.85rem" },
+                  lineHeight: 1.72, color: textMuted, flex: 1,
+                }}>
+                  {project.summary}
+                </Typography>
+
+                <Box sx={{ height: "1px", background: cardBorder }} />
+
+                {/* chips */}
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.7 }}>
+                  {project.skills.map((skill, si) => (
+                    <Chip key={si} label={skill} size="small" sx={{
+                      fontFamily: "'Outfit', sans-serif", fontWeight: 600,
+                      fontSize: "0.65rem", height: 22, borderRadius: "3px",
+                      background: chipBg, color: textMuted,
+                      border: `1px solid ${cardBorder}`,
+                      "& .MuiChip-label": { px: 0.8 },
+                      "&:hover": { color: accent, borderColor: accent },
+                      transition: "all 0.18s ease", cursor: "default",
+                    }} />
+                  ))}
+                </Box>
+              </Box>
+            </Box>
+          );
+        })}
+      </Box>
+
+      {/* bottom line */}
+      <Box sx={{
+        mt: 10, display: "flex", alignItems: "center", gap: 2,
+        opacity: visible ? 1 : 0, transition: "all 0.7s ease 1s",
+      }}>
+        <Box sx={{ flex: 1, height: "1px", background: cardBorder }} />
+        <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", color: endLabel, letterSpacing: "0.08em" }}>
+          end_of_section
+        </Typography>
       </Box>
     </Box>
   );

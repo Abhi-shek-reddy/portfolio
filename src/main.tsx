@@ -1,13 +1,12 @@
-// main.tsx
-
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import { ThemeProvider, CssBaseline } from '@mui/material';
-import { getTheme } from './components/theme'; // ✅ Capital "T"
-import { useState } from 'react';
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { getTheme } from "./components/theme";
+import { useState } from "react";
 
 const Root = () => {
-  const [mode, setMode] = useState<'light' | 'dark'>('light');
+  const [mode, setMode] = useState<"light" | "dark">("dark");
 
   return (
     <ThemeProvider theme={getTheme(mode)}>
@@ -17,4 +16,4 @@ const Root = () => {
   );
 };
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<Root />);
+ReactDOM.createRoot(document.getElementById("root")!).render(<Root />);

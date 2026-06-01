@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
 .gloria-hallelujah-regular {
   font-family: "Gloria Hallelujah", cursive;
   font-weight: 400;
@@ -39,7 +39,7 @@
   border-radius: 50%;
 }
 
-/* Icon Orbit Base */
+
 .icon-orbit {
   position: absolute;
   border-radius: 50%;
@@ -51,7 +51,6 @@
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Circular Glow on Hover */
 .icon-orbit::before {
   content: "";
   position: absolute;
@@ -72,7 +71,7 @@
   animation: orbitPulse 1.2s ease-in-out infinite;
 }
 
-/* Brand Glow Backgrounds */
+
 .icon-orbit.linkedin::before {
   background: rgba(10, 102, 194, 0.3);
 }
@@ -89,7 +88,6 @@
   background: rgba(51, 51, 51, 0.3);
 }
 
-/* Hover Zoom + Color */
 .icon-orbit:hover {
   transform: scale(1.2);
 }
@@ -131,14 +129,14 @@
   color: white;
 }
 
-/* Floating Animation */
+
 @keyframes float {
   0% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
   100% { transform: translateY(0); }
 }
 
-/* Pulse Ring Glow */
+
 @keyframes orbitPulse {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
@@ -151,9 +149,156 @@
   }
 }
 
-/* Icon Positions */
+
 .icon1 { top: 0%; left: 50%; transform: translate(-50%, -50%); }
 .icon2 { top: 25%; left: 90%; transform: translate(-50%, -50%); }
 .icon3 { bottom: 0%; left: 50%; transform: translate(-50%, 50%); }
 .icon4 { top: 75%; left: 10%; transform: translate(-50%, -50%); }
-.icon5 { top: 10%; left: 10%; transform: translate(-50%, -50%); }
+.icon5 { top: 10%; left: 10%; transform: translate(-50%, -50%); } */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700;900&display=swap');
+
+/* ── Grid background ─────────────────────────────────────── */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dark mode grid — green tint */
+[data-mui-color-scheme="dark"] .grid-bg,
+.dark-mode .grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 255, 180, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 180, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Light mode grid — blue tint, stronger so it's actually visible */
+[data-mui-color-scheme="light"] .grid-bg,
+.light-mode .grid-bg,
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(10, 102, 194, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 102, 194, 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* ── Scan line ───────────────────────────────────────────── */
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  pointer-events: none;
+  z-index: 1;
+  animation: scan-anim 9s linear infinite;
+}
+
+[data-mui-color-scheme="dark"] .scan-line,
+.dark-mode .scan-line {
+  background: linear-gradient(90deg, transparent 0%, rgba(0,255,180,0.14) 40%, rgba(0,255,180,0.14) 60%, transparent 100%);
+}
+
+[data-mui-color-scheme="light"] .scan-line,
+.light-mode .scan-line,
+.scan-line {
+  background: linear-gradient(90deg, transparent 0%, rgba(10,102,194,0.1) 40%, rgba(10,102,194,0.1) 60%, transparent 100%);
+}
+
+@keyframes scan-anim {
+  0%   { top: 0;    opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ── Corner code labels ──────────────────────────────────── */
+.corner-code {
+  position: absolute !important;
+  font-family: 'Space Mono', monospace !important;
+  font-size: 0.6rem !important;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+  z-index: 2;
+}
+.corner-tl { top: 18px; left: 24px; }
+.corner-br { bottom: 18px; right: 24px; }
+
+/* ── Status badge ────────────────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  border: 1px solid;
+  border-radius: 3px;
+  margin-bottom: 18px;
+}
+
+/* ── Blinking dot ────────────────────────────────────────── */
+.blink-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: blink-dot 1.5s ease-in-out infinite;
+}
+@keyframes blink-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+/* ── Block cursor (typewriter) ───────────────────────────── */
+.block-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 14px;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: block-blink 1s step-end infinite;
+}
+@keyframes block-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Hex container ───────────────────────────────────────── */
+.hex-container {
+  position: relative;
+  width: 260px;
+  height: 280px;
+}
+.hex-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Floating chips ──────────────────────────────────────── */
+.hex-chip {
+  position: absolute;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  z-index: 5;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+@keyframes float-a {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+@keyframes float-b {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(7px); }
+}
+
+/* ── Vertex pulse dots ───────────────────────────────────── */
+@keyframes blink-vertex {
+  0%, 100% { opacity: 0.8; }
+  50%       { opacity: 0.25; }
+}
