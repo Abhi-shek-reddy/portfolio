@@ -40,7 +40,7 @@ const ContactMe: React.FC = () => {
   const gridColor    = isDark ? "rgba(255,255,255,0.025)" : "rgba(99,179,255,0.03)";
   const headerBg     = isDark ? "rgba(0,255,180,0.03)"    : "rgba(251,191,36,0.04)";
   const termBg       = isDark ? "rgba(255,255,255,0.02)"  : "rgba(255,255,255,0.03)";
-  const statBg       = isDark ? "rgba(255,255,255,0.04)"  : "rgba(255,255,255,0.05)";
+  
   const footerAccent = isDark ? "rgba(0,255,180,0.22)"    : "rgba(251,191,36,0.22)";
 
   useEffect(() => {

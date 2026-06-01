@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import  { useRef, useEffect, useState } from "react";
 import { Box, Typography, Chip, useTheme } from "@mui/material";
 
 const experiences = [
