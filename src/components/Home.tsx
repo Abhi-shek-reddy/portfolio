@@ -64,7 +64,7 @@ const resume = {
     },
   ],
   education: [
-    { degree: "MS Information System Technologies", school: "Wilmington University",         year: "2024–2026", gpa: "3.8 / 4.0" },
+    { degree: "MS Information System Technologies", school: "Wilmington University",         year: "2024–2026", gpa: "3.6 / 4.0" },
     { degree: "BTech Computer Science",             school: "Lovely Professional University", year: "2019–2023", gpa: "7.2 / 10"  },
   ],
   skills: {
@@ -556,7 +556,7 @@ const Home: React.FC = () => {
               sx={{ color: textMuted, border: `1px solid ${cardBorder}`, borderRadius: "6px", width: 32, height: 32 }}>
               <Close sx={{ fontSize: 15 }} />
             </IconButton>
-            <Button variant="contained" href="/Abhishek_Reddy_Resume.pdf" download
+            <Button variant="contained" href="/Abhishek_Reddy_AzureLakehouse_DE.pdf" download
               startIcon={<Download sx={{ fontSize: "0.85rem !important" }} />}
               sx={{
                 textTransform: "none", fontFamily: "'Outfit', sans-serif",
