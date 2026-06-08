@@ -1,4 +1,4 @@
-import  { useRef, useEffect, useState } from "react";
+import { useState } from "react";
 import { Box, Typography, Chip, useTheme } from "@mui/material";
 
 const experiences = [
@@ -81,8 +81,7 @@ const ACCENTS_LIGHT = ["#fbbf24", "#93c5fd", "#f9a8d4"];
 export default function Experience() {
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+const [visible] = useState(true);
 
   // ── Tokens — navy+gold light / black+green dark ───────────────
   const bg          = isDark ? "#080f14"  : "#091420";   // alternate tier
@@ -103,25 +102,18 @@ export default function Experience() {
     ? { 0: "rgba(0,255,180,0.04)",  1: "rgba(96,165,250,0.04)",  2: "rgba(249,168,212,0.04)" }
     : { 0: "rgba(251,191,36,0.05)", 1: "rgba(147,197,253,0.05)", 2: "rgba(249,168,212,0.05)" };
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setVisible(true); },
-      { threshold: 0.08 }
-    );
-    if (sectionRef.current) obs.observe(sectionRef.current);
-    return () => obs.disconnect();
-  }, []);
+
 
   return (
     <Box
       id="experience"
-      ref={sectionRef}
+      
       sx={{
         position: "relative",
         backgroundColor: bg,
         py: { xs: 8, md: 12 },
         px: { xs: 3, sm: 5, md: 10, lg: 16 },
-        overflow: "hidden",
+        overflow: "visible",
       }}
     >
       {/* grid */}
