@@ -24,7 +24,7 @@ const educationData = [
   {
     degree: "BTech in Computer Science",
     field: "Computer Science & Engineering",
-    duration: "2019 – 2023",
+    duration: "",
     university: "Lovely Professional University",
     location: "Punjab, India",
     cgpa: "7.2 / 10",
@@ -40,22 +40,7 @@ const educationData = [
     accentDark: "#60a5fa",
     accentLight: "#93c5fd",
   },
-  {
-    degree: "Intermediate — MPC",
-    field: "Mathematics, Physics & Chemistry",
-    duration: "2017 – 2019",
-    university: "Sri Chaitanya Junior College",
-    location: "Hyderabad, India",
-    cgpa: "9.5 / 10",
-    cgpaPercent: "95%",
-    status: "Completed",
-    highlights: [
-      "Achieved high academic performance in core mathematics and physics — disciplines that underpin statistical thinking and systems reasoning in data engineering.",
-      "Developed structured analytical and problem-solving skills essential for debugging complex pipeline failures and optimising distributed queries.",
-    ],
-    accentDark: "#fbbf24",
-    accentLight: "#fb923c",
-  },
+
 ];
 
 const Education: React.FC = () => {
@@ -66,15 +51,15 @@ const Education: React.FC = () => {
 
   // ── Tokens — navy+gold light / black+green dark ───────────────
   // Alternate bg tier (same as About, Experience, Contact)
-  const bg            = isDark ? "#080f14"  : "#091420";
-  const cardBg        = isDark ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.04)";
-  const cardBorder    = isDark ? "rgba(255,255,255,0.07)"  : "rgba(99,179,255,0.1)";
-  const textPrimary   = isDark ? "#e8f4f0"  : "#e0f2ff";
-  const textMuted     = isDark ? "rgba(232,244,240,0.5)"   : "rgba(224,242,255,0.48)";
-  const gridColor     = isDark ? "rgba(255,255,255,0.025)" : "rgba(99,179,255,0.03)";
-  const sectionAccent = isDark ? "#00ffb4"  : "#fbbf24";
-  const endLabel      = isDark ? "rgba(255,255,255,0.15)"  : "rgba(251,191,36,0.2)";
-  const headerBg      = isDark ? "rgba(255,255,255,0.02)"  : "rgba(255,255,255,0.03)";
+  const bg = isDark ? "#080f14" : "#091420";
+  const cardBg = isDark ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.04)";
+  const cardBorder = isDark ? "rgba(255,255,255,0.07)" : "rgba(99,179,255,0.1)";
+  const textPrimary = isDark ? "#e8f4f0" : "#e0f2ff";
+  const textMuted = isDark ? "rgba(232,244,240,0.5)" : "rgba(224,242,255,0.48)";
+  const gridColor = isDark ? "rgba(255,255,255,0.025)" : "rgba(99,179,255,0.03)";
+  const sectionAccent = isDark ? "#00ffb4" : "#fbbf24";
+  const endLabel = isDark ? "rgba(255,255,255,0.15)" : "rgba(251,191,36,0.2)";
+  const headerBg = isDark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.03)";
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -189,13 +174,18 @@ const Education: React.FC = () => {
                   justifyContent: "space-between", alignItems: "flex-start", gap: 1.5,
                 }}>
                   <Box>
-                    <Typography sx={{
-                      fontFamily: "'Outfit', sans-serif", fontWeight: 800,
-                      fontSize: { xs: "1rem", md: "1.15rem" },
-                      color: textPrimary, lineHeight: 1.2, mb: 0.4,
-                    }}>
-                      {edu.degree}
-                    </Typography>
+                    {edu.duration && (
+                      <Typography
+                        sx={{
+                          fontFamily: "'Space Mono', monospace",
+                          fontSize: "0.62rem",
+                          color: textMuted,
+                          letterSpacing: "0.04em",
+                        }}
+                      >
+                        {edu.duration}
+                      </Typography>
+                    )}
                     <Typography sx={{ fontFamily: "'Outfit', sans-serif", fontSize: "0.85rem", color: accent, fontWeight: 600 }}>
                       {edu.field}
                     </Typography>

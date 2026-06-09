@@ -7,7 +7,6 @@ import EmailIcon from "@mui/icons-material/Email";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import CheckIcon from "@mui/icons-material/Check";
 
@@ -16,10 +15,10 @@ const email = "abhishekreddymanam@gmail.com";
 
 // Social accent colours — vivid on both dark substrates
 const socials = [
-  { label: "LinkedIn",  icon: <LinkedInIcon  sx={{ fontSize: 18 }} />, href: "https://www.linkedin.com/in/abhishek-reddy-manam-1b5167204/", accentDark: "#60a5fa", accentLight: "#93c5fd" },
-  { label: "GitHub",    icon: <GitHubIcon    sx={{ fontSize: 18 }} />, href: "https://github.com/Abhi-shek-reddy",                          accentDark: "#e8f4f0", accentLight: "#e0f2ff" },
-  { label: "Instagram", icon: <InstagramIcon sx={{ fontSize: 18 }} />, href: "https://www.instagram.com/aab.hi_/",                         accentDark: "#f9a8d4", accentLight: "#f9a8d4" },
-  { label: "WhatsApp",  icon: <WhatsAppIcon  sx={{ fontSize: 18 }} />, href: "https://wa.me/14844829961",                                   accentDark: "#34d399", accentLight: "#34d399" },
+  { label: "LinkedIn", icon: <LinkedInIcon sx={{ fontSize: 18 }} />, href: "https://www.linkedin.com/in/abhishek-reddy-manam-1b5167204/", accentDark: "#60a5fa", accentLight: "#93c5fd" },
+  { label: "GitHub", icon: <GitHubIcon sx={{ fontSize: 18 }} />, href: "https://github.com/Abhi-shek-reddy", accentDark: "#e8f4f0", accentLight: "#e0f2ff" },
+
+  { label: "WhatsApp", icon: <WhatsAppIcon sx={{ fontSize: 18 }} />, href: "https://wa.me/14844829961", accentDark: "#34d399", accentLight: "#34d399" },
 ];
 
 const ContactMe: React.FC = () => {
@@ -31,17 +30,17 @@ const ContactMe: React.FC = () => {
   const [snackOpen, setSnackOpen] = useState(false);
 
   // ── Tokens — navy+gold light / black+green dark ───────────────
-  const accent       = isDark ? "#00ffb4" : "#fbbf24";
-  const bg           = isDark ? "#080f14"  : "#091420";   // alternate tier
-  const cardBg       = isDark ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.04)";
-  const cardBorder   = isDark ? "rgba(255,255,255,0.07)"  : "rgba(99,179,255,0.1)";
-  const textPrimary  = isDark ? "#e8f4f0"  : "#e0f2ff";
-  const textMuted    = isDark ? "rgba(232,244,240,0.5)"   : "rgba(224,242,255,0.48)";
-  const gridColor    = isDark ? "rgba(255,255,255,0.025)" : "rgba(99,179,255,0.03)";
-  const headerBg     = isDark ? "rgba(0,255,180,0.03)"    : "rgba(251,191,36,0.04)";
-  const termBg       = isDark ? "rgba(255,255,255,0.02)"  : "rgba(255,255,255,0.03)";
-  
-  const footerAccent = isDark ? "rgba(0,255,180,0.22)"    : "rgba(251,191,36,0.22)";
+  const accent = isDark ? "#00ffb4" : "#fbbf24";
+  const bg = isDark ? "#080f14" : "#091420";   // alternate tier
+  const cardBg = isDark ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.04)";
+  const cardBorder = isDark ? "rgba(255,255,255,0.07)" : "rgba(99,179,255,0.1)";
+  const textPrimary = isDark ? "#e8f4f0" : "#e0f2ff";
+  const textMuted = isDark ? "rgba(232,244,240,0.5)" : "rgba(224,242,255,0.48)";
+  const gridColor = isDark ? "rgba(255,255,255,0.025)" : "rgba(99,179,255,0.03)";
+  const headerBg = isDark ? "rgba(0,255,180,0.03)" : "rgba(251,191,36,0.04)";
+  const termBg = isDark ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.03)";
+
+  const footerAccent = isDark ? "rgba(0,255,180,0.22)" : "rgba(251,191,36,0.22)";
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -142,10 +141,10 @@ const ContactMe: React.FC = () => {
             fontSize: { xs: "0.9rem", md: "0.95rem" },
             lineHeight: 1.8, color: textMuted, mb: 4,
           }}>
-            I'm actively looking for full-time or internship opportunities in
-            Data Engineering, Cloud Analytics, and Full Stack Development.
-            Whether it's a data pipeline, a cloud architecture discussion, or
-            a product you want to build — I'm open to the conversation.
+            I'm actively seeking full-time opportunities in Data Engineering,
+            Analytics Engineering, and Cloud Data Platforms. I enjoy building
+            scalable ETL pipelines, cloud-native data solutions, and modern
+            lakehouse architectures that enable data-driven decision making.
           </Typography>
 
           {/* terminal block */}
@@ -159,7 +158,7 @@ const ContactMe: React.FC = () => {
               borderBottom: `1px solid ${cardBorder}`,
               background: termBg,
             }}>
-              {["#ff5f57","#febc2e","#28c840"].map(c => (
+              {["#ff5f57", "#febc2e", "#28c840"].map(c => (
                 <Box key={c} sx={{ width: 8, height: 8, borderRadius: "50%", background: c }} />
               ))}
               <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.58rem", color: textMuted, ml: 1 }}>
@@ -168,10 +167,10 @@ const ContactMe: React.FC = () => {
             </Box>
             <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 0.8 }}>
               {[
-                { key: "role",      value: "Data Engineer / Full Stack Dev" },
-                { key: "location",  value: "Delaware, USA"                  },
-                { key: "available", value: "open_to_work = true"            },
-                { key: "response",  value: "< 24 hours"                     },
+                { key: "role", value: "Data Engineer" },
+                { key: "location", value: "Delaware, USA" },
+                { key: "available", value: "open_to_work = true" },
+                { key: "response", value: "< 24 hours" },
               ].map(row => (
                 <Box key={row.key} sx={{ display: "flex", gap: 1.5, alignItems: "baseline" }}>
                   <Typography sx={{
@@ -323,8 +322,9 @@ const ContactMe: React.FC = () => {
                 fontFamily: "'Outfit', sans-serif", fontSize: "0.82rem",
                 color: textMuted, lineHeight: 1.65,
               }}>
-                Seeking full-time or internship roles in Data Engineering, Cloud Analytics,
-                and Full Stack Development. Based in Delaware, USA — open to remote and hybrid.
+                Seeking full-time opportunities in Data Engineering, Analytics Engineering,
+                and Cloud Data Platforms. Based in USA and open to remote,
+                hybrid, and on-site opportunities.
               </Typography>
             </Box>
           </Box>
@@ -343,7 +343,7 @@ const ContactMe: React.FC = () => {
           fontFamily: "'Space Mono', monospace", fontSize: "0.6rem",
           color: textMuted, letterSpacing: "0.06em",
         }}>
-          © 2025 Abhishek Reddy — built with React + MUI + TypeScript
+          © 2026 Abhishek Reddy — built with React + MUI + TypeScript
         </Typography>
         <Typography sx={{
           fontFamily: "'Space Mono', monospace", fontSize: "0.6rem",

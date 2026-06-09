@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   Box, Button, Typography, IconButton,
@@ -18,61 +19,63 @@ import "./Home.css";
 // ── Resume data ───────────────────────────────────────────────────────────────
 const resume = {
   name: "Abhishek Reddy Manam",
-  title: "Data Engineer · Full Stack Developer",
+  title: "Data Engineer · Analytics Engineer",
   location: "Delaware, USA",
   email: "abhishekreddymanam@gmail.com",
   phone: "+1 484-482-9961",
   linkedin: "linkedin.com/in/abhishek-reddy-manam-1b5167204",
   github: "github.com/Abhi-shek-reddy",
   summary:
-    "Azure-first Data Engineer with hands-on experience building production-grade pipelines across Azure, AWS, and GCP. Skilled in dbt, PySpark, Kafka, and Airflow. Full-stack background in React, TypeScript, Django, and PostgreSQL.",
+    "Azure-focused Data Engineer with hands-on experience building scalable data platforms across Azure, AWS, and GCP. Skilled in Azure Data Factory, Databricks, PySpark, Snowflake, Kafka, Airflow, Delta Lake, and modern lakehouse architectures. Passionate about building reliable, analytics-ready data solutions that drive business value.",
   experience: [
     {
       role: "Data Engineer",
       company: "Digiuniv Technologies",
-      duration: "Jul 2023 – Jul 2024",
+      duration: "Oct 2021 – Jul 2024",
       type: "Full-time",
       points: [
-        "Azure Data Factory (40+ linked services), Databricks, Delta Lake, Synapse",
-        "dbt Snowflake project — staging, intermediate, mart; ~60% runtime reduction",
-        "Real-time Kafka + PySpark pipelines into Azure Synapse via Event Hubs",
-        "Airflow on Cloud Composer for cross-cloud BigQuery + AWS Glue orchestration",
+        "Architected a metadata-driven ADF framework with JSON-config-driven workflows across 40+ linked services — cut new source onboarding from days to hours",
+        "Elevated PySpark workloads in Databricks with broadcast joins, predicate pushdown, and AQE on top of Delta Lake Medallion Architecture (Bronze→Silver→Gold) — reducing pipeline latency by 50%",
+        "Owned dbt transformation layer in Snowflake with staging/intermediate/mart conventions, SCD Type 2 snapshots, and CI/CD-gated deployment via GitHub Actions — reducing data quality incidents by 40%",
+        "Built Kafka + PySpark Structured Streaming pipeline processing 5M+ events/day with exactly-once semantics consuming from Azure Event Hubs into Azure Synapse Analytics",
+        "Migrated Airflow to dynamic DAG generation on GCP Cloud Composer spanning BigQuery, Dataflow, and AWS Glue — cutting MTTR from 2 hours to 30 minutes",
+        "Containerised all pipeline services with Docker, integrated Azure DevOps CI/CD, and provisioned infrastructure via Terraform IaC",
+      ],
+    },
+    {
+      role: "Associate Data Engineer",
+      company: "Digiuniv Technologies",
+      duration: "Jun 2020 – Oct 2021",
+      type: "Full-time",
+      points: [
+        "Built dynamic ADF workflows with JSON-driven configuration scaling across multiple data sources without code changes",
+        "Implemented Medallion Architecture (Bronze, Silver, Gold) with Delta Lake on ADLS Gen2 using PySpark in Azure Databricks — type casting, null handling, multi-source joins",
+        "Served business-ready data through Azure Synapse Serverless SQL Pool via OPENROWSET, External Tables, and Managed Identity connected to Power BI",
+        "Led dbt development in Snowflake — staging, intermediate, and mart layers with incremental strategies cutting full-refresh runtimes by ~60%",
       ],
     },
     {
       role: "Data Engineering Intern",
       company: "Digiuniv Technologies",
-      duration: "Jul 2022 – Jun 2023",
+      duration: "Apr 2020 – Jun 2020",
       type: "Internship",
       points: [
-        "ETL pipelines on AWS (S3, Glue, Lambda) and GCP (BigQuery, Pub/Sub)",
-        "Airflow DAGs with Slack alerting and dependency management",
-        "PySpark on EMR — dedup, null-handling, schema enforcement",
-        "Python data quality utilities and row-count reconciliation scripts",
-      ],
-    },
-    {
-      role: "Full Stack Developer Intern",
-      company: "Blockysite",
-      duration: "Jan 2022 – Jun 2022",
-      type: "Internship",
-      points: [
-        "Admin dashboard: RBAC, server-side tables, Chart.js visualisations",
-        "Django + Flask REST APIs with JWT authentication",
-        "React + TypeScript frontend with Axios and React Context",
+        "Assisted building ETL pipelines on AWS (S3, Glue, Lambda, Step Functions) and GCP (BigQuery, Pub/Sub, Cloud Storage) — hands-on exposure to production-scale data movement",
+        "Wrote and maintained Airflow DAGs for multi-step workflows across AWS Glue and BigQuery with Slack failure alerting",
+        "Developed PySpark scripts on AWS EMR for deduplication, null-handling, and schema enforcement on large datasets",
+        "Built Python utilities for data quality validation and row-count reconciliation between source and target",
       ],
     },
   ],
   education: [
     { degree: "MS Information System Technologies", school: "Wilmington University",         year: "2024–2026", gpa: "3.6 / 4.0" },
-    { degree: "BTech Computer Science",             school: "Lovely Professional University", year: "2019–2023", gpa: "7.2 / 10"  },
+    { degree: "BTech Computer Science",             school: "Lovely Professional University", year: "",          gpa: "7.2 / 10"  },
   ],
   skills: {
-    azure:     ["ADF", "Databricks", "Synapse", "ADLS Gen2", "Event Hubs", "DevOps", "Purview"],
-    aws:       ["S3", "Glue", "Redshift", "EMR", "Lambda", "Kinesis"],
-    gcp:       ["BigQuery", "Dataflow", "Pub/Sub", "Cloud Composer"],
-    data:      ["Snowflake", "dbt", "PySpark", "Kafka", "Airflow", "Delta Lake", "Python", "SQL"],
-    fullstack: ["React", "TypeScript", "Django", "Flask", "PostgreSQL", "REST APIs", "Docker"],
+    azure: ["ADF", "Databricks", "Synapse", "ADLS Gen2", "Event Hubs", "DevOps", "Purview"],
+    aws:   ["S3", "Glue", "Redshift", "EMR", "Lambda", "Kinesis", "Step Functions"],
+    gcp:   ["BigQuery", "Dataflow", "Pub/Sub", "Cloud Composer"],
+    data:  ["Snowflake", "dbt", "PySpark", "Kafka", "Airflow", "Delta Lake", "Python", "SQL", "Terraform", "Docker", "Great Expectations"],
   },
 };
 
@@ -115,11 +118,10 @@ const Home: React.FC = () => {
   const cardBorder   = isDark ? "rgba(255,255,255,0.08)" : "rgba(99,179,255,0.12)";
 
   const skillColors: Record<string, string> = {
-    azure:     accent,
-    aws:       isDark ? "#fbbf24" : "#fb923c",
-    gcp:       isDark ? "#60a5fa" : "#93c5fd",
-    data:      "#a78bfa",
-    fullstack: "#f9a8d4",
+    azure: accent,
+    aws:   isDark ? "#fbbf24" : "#fb923c",
+    gcp:   isDark ? "#60a5fa" : "#93c5fd",
+    data:  "#a78bfa",
   };
 
   const updatedLottie = useMemo(
@@ -189,8 +191,12 @@ const Home: React.FC = () => {
 
   // ── Typewriter ─────────────────────────────────────────────────
   const titles = [
-    "Data Engineer", "Data Analyst", "Frontend Developer",
-    "Full Stack Developer", "Programmer", "Problem Solver",
+    "Data Engineer",
+    "Azure Data Engineer",
+    "Analytics Engineer",
+    "Cloud Data Engineer",
+    "ETL Developer",
+    "Problem Solver",
   ];
   const [currentText, setCurrentText] = useState("");
   const [tIdx, setTIdx]     = useState(0);
@@ -215,11 +221,11 @@ const Home: React.FC = () => {
   };
 
   const socials = [
-    { icon: <LinkedIn fontSize="small" />, href: "https://www.linkedin.com/in/abhishek-reddy-manam-1b5167204/", label: "LinkedIn" },
-    { icon: <GitHub    fontSize="small" />, href: "https://github.com/Abhi-shek-reddy",                          label: "GitHub"   },
-    { icon: <Mail      fontSize="small" />, href: "mailto:abhishekreddymanam@gmail.com",                         label: "Email"    },
-    { icon: <Instagram fontSize="small" />, href: "https://www.instagram.com/aab.hi_/",                         label: "Instagram"},
-    { icon: <WhatsApp  fontSize="small" />, href: "https://wa.me/14844829961",                                   label: "WhatsApp" },
+    { icon: <LinkedIn fontSize="small" />, href: "https://www.linkedin.com/in/abhishek-reddy-manam-1b5167204/", label: "LinkedIn"  },
+    { icon: <GitHub    fontSize="small" />, href: "https://github.com/Abhi-shek-reddy",                          label: "GitHub"    },
+    { icon: <Mail      fontSize="small" />, href: "mailto:abhishekreddymanam@gmail.com",                         label: "Email"     },
+    { icon: <Instagram fontSize="small" />, href: "https://www.instagram.com/",                         label: "Instagram" },
+    { icon: <WhatsApp  fontSize="small" />, href: "https://wa.me/14844829961",                                   label: "WhatsApp"  },
   ];
 
   const ticks = [
@@ -314,7 +320,7 @@ const Home: React.FC = () => {
               open to work
             </Typography>
           </Box>
-          {/* Lottie — larger */}
+          {/* Lottie */}
           <Box sx={{ width: { xs: 90, md: 110 }, height: { xs: 80, md: 96 }, mb: 1 }}>
             <Lottie animationData={updatedLottie} loop autoplay />
           </Box>
@@ -327,7 +333,7 @@ const Home: React.FC = () => {
             Abhi<span style={{ color: accent }}>shek</span><br />Reddy
           </Typography>
 
-          {/* typewriter — larger font */}
+          {/* typewriter */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3, minHeight: 40 }}>
             <Typography sx={{
               fontFamily: "'Space Mono', monospace",
@@ -351,8 +357,9 @@ const Home: React.FC = () => {
             fontSize: { xs: "0.95rem", md: "1rem" }, lineHeight: 1.8,
             color: textMuted, maxWidth: 440, mb: 3.5,
           }}>
-            I build high-throughput data pipelines, craft pixel-perfect interfaces,
-            and ship full-stack products that scale. Let's create something that matters.
+            I design and build scalable cloud-native data platforms using Azure,
+            Databricks, PySpark, Snowflake, and modern lakehouse architectures.
+            Passionate about transforming raw data into reliable business insights.
           </Typography>
 
           {/* CTAs */}
@@ -447,8 +454,8 @@ const Home: React.FC = () => {
               }} />
             ))}
             {[
-              { label: "[ Full Stack ]", style: { top: "-6px", right: "-48px" },  anim: "float-a 3.5s ease-in-out infinite" },
-              { label: "[ 3+ yrs exp ]", style: { bottom: "2px", left: "-52px" }, anim: "float-b 4.2s ease-in-out infinite" },
+              { label: "[ Data Engineer ]", style: { top: "-6px", right: "-48px" },  anim: "float-a 3.5s ease-in-out infinite" },
+              { label: "[ 3+ yrs exp ]",    style: { bottom: "2px", left: "-52px" }, anim: "float-b 4.2s ease-in-out infinite" },
             ].map(chip => (
               <Box key={chip.label} className="hex-chip"
                 sx={{
@@ -494,7 +501,7 @@ const Home: React.FC = () => {
         </DialogActions>
       </Dialog>
 
-      {/* ══ RESUME DIALOG — inline overview ═════════════════════ */}
+      {/* ══ RESUME DIALOG ════════════════════════════════════════ */}
       <Dialog
         open={resumeOpen}
         onClose={() => setResumeOpen(false)}
@@ -556,7 +563,7 @@ const Home: React.FC = () => {
               sx={{ color: textMuted, border: `1px solid ${cardBorder}`, borderRadius: "6px", width: 32, height: 32 }}>
               <Close sx={{ fontSize: 15 }} />
             </IconButton>
-            <Button variant="contained" href="/Abhishek_Reddy_AzureLakehouse_DE.pdf" download
+            <Button variant="contained" href="/Abhishek_Reddy_Manam_Resume.pdf" download
               startIcon={<Download sx={{ fontSize: "0.85rem !important" }} />}
               sx={{
                 textTransform: "none", fontFamily: "'Outfit', sans-serif",
@@ -663,9 +670,11 @@ const Home: React.FC = () => {
                       {edu.school}
                     </Typography>
                     <Box sx={{ display: "flex", gap: 2, mt: 0.4 }}>
-                      <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", color: textMuted }}>
-                        {edu.year}
-                      </Typography>
+                      {edu.year && (
+                        <Typography sx={{ fontFamily: "'Space Mono', monospace", fontSize: "0.6rem", color: textMuted }}>
+                          {edu.year}
+                        </Typography>
+                      )}
                       <Typography sx={{
                         fontFamily: "'Space Mono', monospace", fontSize: "0.6rem",
                         color: isDark ? "#60a5fa" : "#93c5fd",
@@ -688,7 +697,7 @@ const Home: React.FC = () => {
                       color: skillColors[key], letterSpacing: "0.08em",
                       textTransform: "uppercase", mb: 0.8,
                     }}>
-                      {key === "fullstack" ? "Full Stack" : key.toUpperCase()}
+                      {key.toUpperCase()}
                     </Typography>
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.6 }}>
                       {chips.map(chip => (

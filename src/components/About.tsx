@@ -8,16 +8,16 @@ const About: React.FC = () => {
   const [visible, setVisible] = useState(false);
 
   // ── Tokens — navy+gold light / black+green dark ───────────────
-  const accent      = isDark ? "#00ffb4" : "#fbbf24";
-  const bg          = isDark ? "#080f14"  : "#091420";   // alternate tier
-  const cardBg      = isDark ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.04)";
-  const cardBorder  = isDark ? "rgba(255,255,255,0.07)"  : "rgba(99,179,255,0.1)";
-  const textPrimary = isDark ? "#e8f4f0"  : "#e0f2ff";
-  const textMuted   = isDark ? "rgba(232,244,240,0.52)"  : "rgba(224,242,255,0.48)";
-  const gridColor   = isDark ? "rgba(255,255,255,0.025)" : "rgba(99,179,255,0.03)";
-  const numColor    = isDark ? "rgba(0,255,180,0.3)"     : "rgba(251,191,36,0.35)";
-  const endLabel    = isDark ? "rgba(0,255,180,0.2)"     : "rgba(251,191,36,0.2)";
-  const fileLabel   = isDark ? "rgba(232,244,240,0.2)"   : "rgba(224,242,255,0.18)";
+  const accent = isDark ? "#00ffb4" : "#fbbf24";
+  const bg = isDark ? "#080f14" : "#091420";   // alternate tier
+  const cardBg = isDark ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.04)";
+  const cardBorder = isDark ? "rgba(255,255,255,0.07)" : "rgba(99,179,255,0.1)";
+  const textPrimary = isDark ? "#e8f4f0" : "#e0f2ff";
+  const textMuted = isDark ? "rgba(232,244,240,0.52)" : "rgba(224,242,255,0.48)";
+  const gridColor = isDark ? "rgba(255,255,255,0.025)" : "rgba(99,179,255,0.03)";
+  const numColor = isDark ? "rgba(0,255,180,0.3)" : "rgba(251,191,36,0.35)";
+  const endLabel = isDark ? "rgba(0,255,180,0.2)" : "rgba(251,191,36,0.2)";
+  const fileLabel = isDark ? "rgba(232,244,240,0.2)" : "rgba(224,242,255,0.18)";
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -30,60 +30,103 @@ const About: React.FC = () => {
 
   const stacks = [
     {
-      label: "Azure",     prefix: "01",
+      label: "Azure Data Platform",
+      prefix: "01",
       color: isDark ? "#00ffb4" : "#fbbf24",
-      chips: ["Azure Data Factory","Azure Synapse","Azure Databricks","ADLS Gen2",
-              "Azure Event Hubs","Azure SQL","Cosmos DB","Azure DevOps","Purview"],
+      chips: [
+        "Azure Data Factory",
+        "Azure Databricks",
+        "Azure Synapse",
+        "ADLS Gen2",
+        "Azure Event Hubs",
+        "Azure SQL",
+        "Azure DevOps"
+      ],
     },
     {
-      label: "AWS",       prefix: "02",
+      label: "AWS",
+      prefix: "02",
       color: isDark ? "#60a5fa" : "#fb923c",
-      chips: ["S3","Glue","Redshift","EMR","Kinesis","Lambda","Step Functions","Athena"],
+      chips: [
+        "S3",
+        "Glue",
+        "Redshift",
+        "EMR",
+        "Athena",
+        "Lambda"
+      ],
     },
     {
-      label: "GCP",       prefix: "03",
+      label: "GCP",
+      prefix: "03",
       color: isDark ? "#f9a8d4" : "#86efac",
-      chips: ["BigQuery","Dataflow","Pub/Sub","Dataproc","Cloud Composer","GCS"],
+      chips: [
+        "BigQuery",
+        "Dataflow",
+        "Pub/Sub",
+        "Cloud Composer",
+        "GCS"
+      ],
     },
     {
-      label: "Data Core", prefix: "04",
+      label: "Data Engineering",
+      prefix: "04",
       color: isDark ? "#fbbf24" : "#a78bfa",
-      chips: ["Snowflake","dbt","PySpark","Kafka","Airflow","Python","SQL","Docker"],
+      chips: [
+        "PySpark",
+        "Kafka",
+        "Snowflake",
+        "dbt",
+        "Delta Lake",
+        "Airflow",
+        "SQL",
+        "Python"
+      ],
     },
     {
-      label: "Full Stack",prefix: "05",
+      label: "Tools & DevOps",
+      prefix: "05",
       color: isDark ? "#a78bfa" : "#f9a8d4",
-      chips: ["React","TypeScript","Django","Flask","PostgreSQL","REST APIs","Git","Node.js"],
+      chips: [
+        "Git",
+        "GitHub",
+        "Docker",
+        "Linux",
+        "CI/CD",
+        "Jira"
+      ],
     },
   ];
+
 
   const paragraphs = [
     {
       prefix: "01",
-      highlight: "Azure-first Data Engineer",
-      text: "with deep expertise designing and deploying enterprise-grade pipelines on the Microsoft Azure ecosystem. I architect end-to-end solutions using Azure Data Factory for orchestration, Azure Databricks and PySpark for large-scale transformation, Synapse Analytics for analytical workloads, and ADLS Gen2 as the lakehouse foundation.",
+      highlight: "Aspiring Data Engineer",
+      text: "with hands-on experience designing and building scalable data pipelines using Azure Data Factory, Databricks, PySpark, Delta Lake, and Azure Synapse Analytics. I focus on transforming raw data into reliable, analytics-ready datasets that support business decision-making.",
     },
     {
       prefix: "02",
-      highlight: "Cloud-polyglot practitioner",
-      text: "who extends seamlessly across AWS (S3, Glue, Redshift, EMR, Kinesis) and GCP (BigQuery, Dataflow, Pub/Sub, Cloud Composer). I pick the right cloud for the right job — leveraging BigQuery's serverless scale, Redshift's columnar speed, or Synapse's unified analytics depending on what the data demands.",
+      highlight: "Cloud Data Engineering Practitioner",
+      text: "with practical exposure to Azure, AWS, and GCP ecosystems. I have worked with services including Azure Data Factory, ADLS Gen2, Databricks, Snowflake, AWS S3, Glue, and BigQuery to build modern data platforms and ETL workflows.",
     },
     {
       prefix: "03",
-      highlight: "Real-time & batch specialist",
-      text: "with hands-on experience building streaming pipelines using Kafka, Azure Event Hubs, and Kinesis alongside Airflow and dbt for reliable batch orchestration and transformation. I deliver clean, tested, documented data that analytics and ML teams can trust and ship with.",
+      highlight: "Batch & Real-Time Data Processing Specialist",
+      text: "experienced in developing data ingestion and transformation pipelines using PySpark, Kafka, Delta Lake, and SQL. I enjoy solving complex data challenges involving large-scale processing, optimization, and data quality management.",
     },
     {
       prefix: "04",
-      highlight: "Full Stack developer",
-      text: "who brings the full product perspective — React, TypeScript, Django, Flask, PostgreSQL, and REST APIs. Building UIs and APIs alongside data pipelines gives me a unique end-to-end view of how data flows through a product and where it can create real business value.",
+      highlight: "Strong Foundation in Data Systems",
+      text: "with expertise in database design, data modeling, ETL development, warehousing concepts, and cloud-native architectures. I continuously improve my skills through hands-on projects and real-world implementations.",
     },
     {
       prefix: "05",
-      highlight: "Completed my Master's",
-      text: "and actively seeking full-time or internship roles in Data Engineering and Cloud Analytics. I want to build systems at scale, grow alongside strong teams, and ship data infrastructure that actually matters.",
+      highlight: "Recent Master's Graduate",
+      text: "currently seeking full-time opportunities in Data Engineering, Analytics Engineering, and Cloud Data Platforms where I can contribute to building scalable, reliable, and business-focused data solutions.",
     },
   ];
+
 
   return (
     <Box

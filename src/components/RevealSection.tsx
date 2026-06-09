@@ -1,17 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const RevealSection: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.2 }}
-    >
-      {children}
-    </motion.div>
-  );
+interface RevealSectionProps {
+children: React.ReactNode;
+}
+
+const RevealSection: React.FC<RevealSectionProps> = ({ children }) => {
+return (
+<motion.div
+initial={{ opacity: 0 }}
+animate={{ opacity: 1 }}
+transition={{
+duration: 0.5,
+ease: "easeOut",
+}}
+style={{
+width: "100%",
+overflow: "visible",
+display: "block",
+}}
+>
+{children}
+</motion.div>
+);
 };
 
 export default RevealSection;
