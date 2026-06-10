@@ -455,7 +455,7 @@ const Home: React.FC = () => {
             ))}
             {[
               { label: "[ Data Engineer ]", style: { top: "-6px", right: "-48px" },  anim: "float-a 3.5s ease-in-out infinite" },
-              { label: "[ 3+ yrs exp ]",    style: { bottom: "2px", left: "-52px" }, anim: "float-b 4.2s ease-in-out infinite" },
+              { label: "[ 4+ yrs exp ]",    style: { bottom: "2px", left: "-52px" }, anim: "float-b 4.2s ease-in-out infinite" },
             ].map(chip => (
               <Box key={chip.label} className="hex-chip"
                 sx={{
