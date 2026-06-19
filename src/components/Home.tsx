@@ -563,7 +563,7 @@ const Home: React.FC = () => {
               sx={{ color: textMuted, border: `1px solid ${cardBorder}`, borderRadius: "6px", width: 32, height: 32 }}>
               <Close sx={{ fontSize: 15 }} />
             </IconButton>
-            <Button variant="contained" href="/Abhishek_Reddy_Manam_Resume.pdf" download
+            <Button variant="contained" href="/Abhishek_Reddy_Master_Resume.pdf" download
               startIcon={<Download sx={{ fontSize: "0.85rem !important" }} />}
               sx={{
                 textTransform: "none", fontFamily: "'Outfit', sans-serif",
