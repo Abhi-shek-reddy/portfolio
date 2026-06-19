@@ -56,7 +56,7 @@ const resume = {
     },
     {
       role: "Data Engineering Intern",
-      company: "Digiuniv Technologies",
+      company: "Blocysite",
       duration: "Jun 2021 – Mar 2022",
       type: "Internship",
       points: [
