@@ -4,11 +4,11 @@ import { Box, Typography, useTheme } from "@mui/material";
 const educationData = [
   {
     degree: "MS in Information System Technologies",
-    field: "Web Design & Development",
+    field: "Information System Technologies",
     duration: "2024 – 2026",
     university: "Wilmington University",
     location: "Delaware, USA",
-    cgpa: "3.8 / 4.0",
+    cgpa: "3.6 / 4.0",
     cgpaPercent: "95%",
     status: "Completed",
     highlights: [
