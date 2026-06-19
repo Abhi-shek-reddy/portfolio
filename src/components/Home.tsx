@@ -31,7 +31,7 @@ const resume = {
     {
       role: "Data Engineer",
       company: "Digiuniv Technologies",
-      duration: "Oct 2021 – Jul 2024",
+      duration: "Jun 2023 – Jul 2024",
       type: "Full-time",
       points: [
         "Architected a metadata-driven ADF framework with JSON-config-driven workflows across 40+ linked services — cut new source onboarding from days to hours",
@@ -44,8 +44,8 @@ const resume = {
     },
     {
       role: "Associate Data Engineer",
-      company: "Digiuniv Technologies",
-      duration: "Jun 2020 – Oct 2021",
+      company: "Blocysite",
+      duration: "Mar 2022 – Jun 2023",
       type: "Full-time",
       points: [
         "Built dynamic ADF workflows with JSON-driven configuration scaling across multiple data sources without code changes",
@@ -57,7 +57,7 @@ const resume = {
     {
       role: "Data Engineering Intern",
       company: "Digiuniv Technologies",
-      duration: "Apr 2020 – Jun 2020",
+      duration: "Jun 2021 – Mar 2022",
       type: "Internship",
       points: [
         "Assisted building ETL pipelines on AWS (S3, Glue, Lambda, Step Functions) and GCP (BigQuery, Pub/Sub, Cloud Storage) — hands-on exposure to production-scale data movement",
