@@ -14,6 +14,7 @@ import {
 import Lottie from "lottie-react";
 import hiAnimation from "../lottie/Hello.json";
 import { replaceLottieColor } from "../utils/replaceLottieColor";
+import PipelineFlow from "./PipelineFlow";
 import "./Home.css";
 
 // ── Resume data ───────────────────────────────────────────────────────────────
@@ -68,60 +69,60 @@ const resume = {
     },
   ],
   education: [
-    { degree: "MS Information System Technologies", school: "Wilmington University",         year: "2024–2026", gpa: "3.6 / 4.0" },
-    { degree: "BTech Computer Science",             school: "Lovely Professional University", year: "",          gpa: "7.2 / 10"  },
+    { degree: "MS Information System Technologies", school: "Wilmington University", year: "2024–2026", gpa: "3.6 / 4.0" },
+    { degree: "BTech Computer Science", school: "Lovely Professional University", year: "", gpa: "7.2 / 10" },
   ],
   skills: {
     azure: ["ADF", "Databricks", "Synapse", "ADLS Gen2", "Event Hubs", "DevOps", "Purview"],
-    aws:   ["S3", "Glue", "Redshift", "EMR", "Lambda", "Kinesis", "Step Functions"],
-    gcp:   ["BigQuery", "Dataflow", "Pub/Sub", "Cloud Composer"],
-    data:  ["Snowflake", "dbt", "PySpark", "Kafka", "Airflow", "Delta Lake", "Python", "SQL", "Terraform", "Docker", "Great Expectations"],
+    aws: ["S3", "Glue", "Redshift", "EMR", "Lambda", "Kinesis", "Step Functions"],
+    gcp: ["BigQuery", "Dataflow", "Pub/Sub", "Cloud Composer"],
+    data: ["Snowflake", "dbt", "PySpark", "Kafka", "Airflow", "Delta Lake", "Python", "SQL", "Terraform", "Docker", "Great Expectations"],
   },
 };
 
 // ── Main component ────────────────────────────────────────────────────────────
 const Home: React.FC = () => {
-  const [open, setOpen]               = useState(false);
-  const [resumeOpen, setResumeOpen]   = useState(false);
+  const [open, setOpen] = useState(false);
+  const [resumeOpen, setResumeOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [form, setForm]               = useState({ name: "", email: "", message: "" });
-  const [mounted, setMounted]         = useState(false);
-  const canvasRef                     = useRef<HTMLCanvasElement>(null);
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [mounted, setMounted] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const theme  = useTheme();
+  const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
 
   // ── Design tokens ─────────────────────────────────────────────
-  const accent       = isDark ? "#00ffb4" : "#fbbf24";
-  const accentHover  = isDark ? "#00e8a3" : "#f59e0b";
-  const accentText   = isDark ? "#05090e" : "#0d1b2a";
-  const bg           = isDark ? "#05090e" : "#0d1b2a";
-  const surface      = isDark ? "rgba(5,9,14,0.97)"  : "rgba(13,27,42,0.97)";
-  const textPrimary  = isDark ? "#e8f4f0"  : "#e0f2ff";
-  const textMuted    = isDark ? "rgba(232,244,240,0.48)" : "rgba(224,242,255,0.48)";
-  const borderFaint  = isDark ? "rgba(255,255,255,0.07)" : "rgba(99,179,255,0.1)";
-  const accentFaint  = isDark ? "rgba(0,255,180,0.06)"   : "rgba(251,191,36,0.07)";
-  const accentBorder = isDark ? "rgba(0,255,180,0.25)"   : "rgba(251,191,36,0.28)";
-  const chipBg       = isDark ? "rgba(5,9,14,0.88)"      : "rgba(13,27,42,0.88)";
-  const gridColor    = isDark ? "rgba(0,255,180,0.04)"   : "rgba(99,179,255,0.04)";
-  const scanColor    = isDark ? "rgba(0,255,180,0.12)"   : "rgba(251,191,36,0.1)";
-  const cornerColor  = isDark ? "rgba(0,255,180,0.22)"   : "rgba(251,191,36,0.22)";
-  const hexStroke    = isDark ? "rgba(0,255,180,0.2)"    : "rgba(251,191,36,0.22)";
-  const hexInner     = isDark ? "rgba(0,255,180,0.07)"   : "rgba(251,191,36,0.06)";
-  const hexFill      = isDark ? "rgba(0,255,180,0.02)"   : "rgba(251,191,36,0.025)";
-  const hexGlow      = isDark ? "rgba(0,255,180,0.04)"   : "rgba(251,191,36,0.04)";
-  const hexRing      = isDark ? "rgba(0,255,180,0.06)"   : "rgba(251,191,36,0.06)";
-  const photoBorder  = isDark ? "rgba(0,255,180,0.45)"   : "rgba(251,191,36,0.5)";
-  const dialogBorder = isDark ? "rgba(0,255,180,0.14)"   : "rgba(251,191,36,0.18)";
-  const fieldBorder  = isDark ? "rgba(0,255,180,0.14)"   : "rgba(251,191,36,0.15)";
-  const cardBg       = isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.05)";
-  const cardBorder   = isDark ? "rgba(255,255,255,0.08)" : "rgba(99,179,255,0.12)";
+  const accent = isDark ? "#00ffb4" : "#fbbf24";
+  const accentHover = isDark ? "#00e8a3" : "#f59e0b";
+  const accentText = isDark ? "#05090e" : "#0d1b2a";
+  const bg = isDark ? "#05090e" : "#0d1b2a";
+  const surface = isDark ? "rgba(5,9,14,0.97)" : "rgba(13,27,42,0.97)";
+  const textPrimary = isDark ? "#e8f4f0" : "#e0f2ff";
+  const textMuted = isDark ? "rgba(232,244,240,0.48)" : "rgba(224,242,255,0.48)";
+  const borderFaint = isDark ? "rgba(255,255,255,0.07)" : "rgba(99,179,255,0.1)";
+  const accentFaint = isDark ? "rgba(0,255,180,0.06)" : "rgba(251,191,36,0.07)";
+  const accentBorder = isDark ? "rgba(0,255,180,0.25)" : "rgba(251,191,36,0.28)";
+  const chipBg = isDark ? "rgba(5,9,14,0.88)" : "rgba(13,27,42,0.88)";
+  const gridColor = isDark ? "rgba(0,255,180,0.04)" : "rgba(99,179,255,0.04)";
+  const scanColor = isDark ? "rgba(0,255,180,0.12)" : "rgba(251,191,36,0.1)";
+  const cornerColor = isDark ? "rgba(0,255,180,0.22)" : "rgba(251,191,36,0.22)";
+  const hexStroke = isDark ? "rgba(0,255,180,0.2)" : "rgba(251,191,36,0.22)";
+  const hexInner = isDark ? "rgba(0,255,180,0.07)" : "rgba(251,191,36,0.06)";
+  const hexFill = isDark ? "rgba(0,255,180,0.02)" : "rgba(251,191,36,0.025)";
+  const hexGlow = isDark ? "rgba(0,255,180,0.04)" : "rgba(251,191,36,0.04)";
+  const hexRing = isDark ? "rgba(0,255,180,0.06)" : "rgba(251,191,36,0.06)";
+  const photoBorder = isDark ? "rgba(0,255,180,0.45)" : "rgba(251,191,36,0.5)";
+  const dialogBorder = isDark ? "rgba(0,255,180,0.14)" : "rgba(251,191,36,0.18)";
+  const fieldBorder = isDark ? "rgba(0,255,180,0.14)" : "rgba(251,191,36,0.15)";
+  const cardBg = isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.05)";
+  const cardBorder = isDark ? "rgba(255,255,255,0.08)" : "rgba(99,179,255,0.12)";
 
   const skillColors: Record<string, string> = {
     azure: accent,
-    aws:   isDark ? "#fbbf24" : "#fb923c",
-    gcp:   isDark ? "#60a5fa" : "#93c5fd",
-    data:  "#a78bfa",
+    aws: isDark ? "#fbbf24" : "#fb923c",
+    gcp: isDark ? "#60a5fa" : "#93c5fd",
+    data: "#a78bfa",
   };
 
   const updatedLottie = useMemo(
@@ -141,7 +142,7 @@ const Home: React.FC = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const resize = () => {
-      canvas.width  = canvas.offsetWidth;
+      canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
     };
     resize();
@@ -156,11 +157,11 @@ const Home: React.FC = () => {
     let raf: number;
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const dotColor  = isDark ? "rgba(0,255,180,0.55)" : "rgba(251,191,36,0.45)";
+      const dotColor = isDark ? "rgba(0,255,180,0.55)" : "rgba(251,191,36,0.45)";
       const lineAlpha = isDark ? 0.07 : 0.06;
       for (const p of pts) {
         p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -170,7 +171,7 @@ const Home: React.FC = () => {
       for (let i = 0; i < pts.length; i++) {
         for (let j = i + 1; j < pts.length; j++) {
           const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-          const d  = Math.sqrt(dx * dx + dy * dy);
+          const d = Math.sqrt(dx * dx + dy * dy);
           if (d < 110) {
             ctx.beginPath();
             ctx.moveTo(pts[i].x, pts[i].y);
@@ -199,9 +200,9 @@ const Home: React.FC = () => {
     "Problem Solver",
   ];
   const [currentText, setCurrentText] = useState("");
-  const [tIdx, setTIdx]     = useState(0);
+  const [tIdx, setTIdx] = useState(0);
   const [subIdx, setSubIdx] = useState(0);
-  const [rev, setRev]       = useState(false);
+  const [rev, setRev] = useState(false);
 
   useEffect(() => {
     if (subIdx === titles[tIdx].length + 1 && !rev) { setTimeout(() => setRev(true), 1000); return; }
@@ -221,16 +222,16 @@ const Home: React.FC = () => {
   };
 
   const socials = [
-    { icon: <LinkedIn fontSize="small" />, href: "https://www.linkedin.com/in/abhishek-reddy-manam-1b5167204/", label: "LinkedIn"  },
-    { icon: <GitHub    fontSize="small" />, href: "https://github.com/Abhi-shek-reddy",                          label: "GitHub"    },
-    { icon: <Mail      fontSize="small" />, href: "mailto:abhishekreddymanam@gmail.com",                         label: "Email"     },
-    { icon: <Instagram fontSize="small" />, href: "https://www.instagram.com/",                         label: "Instagram" },
-    { icon: <WhatsApp  fontSize="small" />, href: "https://wa.me/14844829961",                                   label: "WhatsApp"  },
+    { icon: <LinkedIn fontSize="small" />, href: "https://www.linkedin.com/in/abhishek-reddy-manam-1b5167204/", label: "LinkedIn" },
+    { icon: <GitHub fontSize="small" />, href: "https://github.com/Abhi-shek-reddy", label: "GitHub" },
+    { icon: <Mail fontSize="small" />, href: "mailto:abhishekreddymanam@gmail.com", label: "Email" },
+    { icon: <Instagram fontSize="small" />, href: "https://www.instagram.com/", label: "Instagram" },
+    { icon: <WhatsApp fontSize="small" />, href: "https://wa.me/14844829961", label: "WhatsApp" },
   ];
 
   const ticks = [
-    [130,8,130,22],[238,70,226,77],[238,210,226,203],
-    [130,272,130,258],[22,210,34,203],[22,70,34,77],
+    [130, 8, 130, 22], [238, 70, 226, 77], [238, 210, 226, 203],
+    [130, 272, 130, 258], [22, 210, 34, 203], [22, 70, 34, 77],
   ];
 
   const dialogPaper = {
@@ -411,11 +412,22 @@ const Home: React.FC = () => {
         {/* ── RIGHT — Hex frame ── */}
         <Box sx={{
           flex: "0 0 auto", display: { xs: "none", md: "flex" },
-          alignItems: "center", justifyContent: "center",
+          flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 3,
           position: "relative", zIndex: 2, ml: { md: 4, lg: 8 },
           opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(22px)",
           transition: "opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s",
         }}>
+          {/* Pipeline animation (top) */}
+          <Box sx={{ width: { md: 360, lg: 440 } }}>
+            <PipelineFlow
+              dataColor={isDark ? "#fbbf24" : "#93c5fd"}
+              modelColor={accent}
+              labelColor={textMuted}
+              height={200}
+            />
+          </Box>
+
+          {/* Photo in hex frame (below) */}
           <Box className="hex-container">
             <svg className="hex-svg" viewBox="0 0 260 280" fill="none" xmlns="http://www.w3.org/2000/svg">
               <polygon points="130,8 238,70 238,210 130,272 22,210 22,70"
@@ -428,11 +440,12 @@ const Home: React.FC = () => {
                   from="0 130 140" to="360 130 140" dur="22s" repeatCount="indefinite" />
               </circle>
               <circle cx="130" cy="140" r="64" fill={hexGlow} />
-              {ticks.map(([x1,y1,x2,y2], i) => (
+              {ticks.map(([x1, y1, x2, y2], i) => (
                 <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
                   stroke={accent} strokeWidth="1.5" opacity="0.55" />
               ))}
             </svg>
+
             <Box component="img" src="./images/cvPhoto.jpg" alt="Abhishek Reddy"
               sx={{
                 position: "absolute", top: "50%", left: "50%",
@@ -440,10 +453,11 @@ const Home: React.FC = () => {
                 width: 160, height: 160, borderRadius: "50%", objectFit: "cover",
                 border: `2.5px solid ${photoBorder}`, zIndex: 3,
               }} />
+
             {[
-              { top: "0px",    left: "50%",  transform: "translateX(-50%)", delay: "0s",   size: 9, opacity: 0.75 },
-              { bottom: "0px", left: "50%",  transform: "translateX(-50%)", delay: "0.7s", size: 7, opacity: 0.4  },
-              { top: "50%",    right: "-2px", transform: "translateY(-50%)", delay: "1.4s", size: 6, opacity: 0.35 },
+              { top: "0px", left: "50%", transform: "translateX(-50%)", delay: "0s", size: 9, opacity: 0.75 },
+              { bottom: "0px", left: "50%", transform: "translateX(-50%)", delay: "0.7s", size: 7, opacity: 0.4 },
+              { top: "50%", right: "-2px", transform: "translateY(-50%)", delay: "1.4s", size: 6, opacity: 0.35 },
             ].map((s, i) => (
               <Box key={i} sx={{
                 position: "absolute", width: s.size, height: s.size,
@@ -453,9 +467,10 @@ const Home: React.FC = () => {
                 left: s.left, right: (s as any).right, transform: s.transform,
               }} />
             ))}
+
             {[
-              { label: "[ Data Engineer ]", style: { top: "-6px", right: "-48px" },  anim: "float-a 3.5s ease-in-out infinite" },
-              { label: "[ 4+ yrs exp ]",    style: { bottom: "2px", left: "-52px" }, anim: "float-b 4.2s ease-in-out infinite" },
+              { label: "[ Data Engineer ]", style: { top: "-6px", right: "-48px" }, anim: "float-a 3.5s ease-in-out infinite" },
+              { label: "[ 4+ yrs exp ]", style: { bottom: "2px", left: "-52px" }, anim: "float-b 4.2s ease-in-out infinite" },
             ].map(chip => (
               <Box key={chip.label} className="hex-chip"
                 sx={{
@@ -481,7 +496,7 @@ const Home: React.FC = () => {
           <IconButton onClick={() => setOpen(false)} size="small" sx={{ color: textMuted }}><Close /></IconButton>
         </DialogTitle>
         <DialogContent sx={{ px: 3 }}>
-          {(["name","email","message"] as const).map(field => (
+          {(["name", "email", "message"] as const).map(field => (
             <TextField key={field} margin="dense" fullWidth name={field}
               label={field.charAt(0).toUpperCase() + field.slice(1)}
               value={form[field]} onChange={handleChange}
@@ -529,7 +544,7 @@ const Home: React.FC = () => {
           <Box>
             {/* traffic-light dots */}
             <Box sx={{ display: "flex", gap: 0.7, mb: 1.5 }}>
-              {["#ff5f57","#febc2e","#28c840"].map(c => (
+              {["#ff5f57", "#febc2e", "#28c840"].map(c => (
                 <Box key={c} sx={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
               ))}
             </Box>
@@ -719,7 +734,7 @@ const Home: React.FC = () => {
               <ResumeSection icon={<CodeIcon sx={{ fontSize: 14 }} />} label="Links" color="#a78bfa">
                 {[
                   { label: "linkedin", value: resume.linkedin, href: `https://${resume.linkedin}` },
-                  { label: "github",   value: resume.github,   href: `https://${resume.github}`   },
+                  { label: "github", value: resume.github, href: `https://${resume.github}` },
                 ].map(link => (
                   <Box key={link.label} sx={{
                     display: "flex", alignItems: "center", gap: 1.5, mb: 1,
