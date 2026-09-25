@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   Box, Button, Typography, IconButton,
   Dialog, DialogTitle, DialogContent, TextField,
-  DialogActions, Snackbar, Alert, useTheme, Chip,
+  DialogActions, Snackbar, Alert, useTheme, Chip, useMediaQuery,
 } from "@mui/material";
 import {
   GitHub, LinkedIn, Instagram, Mail, WhatsApp,
@@ -91,7 +91,7 @@ const Home: React.FC = () => {
 
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
-
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   // ── Design tokens ─────────────────────────────────────────────
   const accent = isDark ? "#00ffb4" : "#fbbf24";
   const accentHover = isDark ? "#00e8a3" : "#f59e0b";
@@ -276,7 +276,13 @@ const Home: React.FC = () => {
       {/* ══ HERO ═════════════════════════════════════════════════ */}
       <Box id="home" sx={{
         position: "relative", minHeight: "100vh", display: "flex",
-        alignItems: "center", overflow: "hidden",
+        flexDirection: { xs: "column", md: "row" },
+        alignItems: { xs: "stretch", md: "center" },
+        justifyContent: "center",
+        gap: { xs: 5, md: 0 },
+        pt: { xs: 12, md: 0 },   // room for the navbar on phones
+        pb: { xs: 6, md: 0 },
+        overflow: "hidden",
         px: { xs: 3, sm: 5, md: 8, lg: 12 }, backgroundColor: bg,
       }}>
         {/* grid */}
@@ -410,77 +416,87 @@ const Home: React.FC = () => {
         </Box>
 
         {/* ── RIGHT — Hex frame ── */}
+        {/* ── RIGHT — Pipeline animation + photo (all screen sizes) ── */}
         <Box sx={{
-          flex: "0 0 auto", display: { xs: "none", md: "flex" },
-          flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 3,
-          position: "relative", zIndex: 2, ml: { md: 4, lg: 8 },
+          flex: "0 0 auto", display: "flex",
+          flexDirection: "column", alignItems: "center", justifyContent: "center",
+          gap: { xs: 2, md: 3 },
+          width: { xs: "100%", md: "auto" },
+          position: "relative", zIndex: 2, ml: { xs: 0, md: 4, lg: 8 },
           opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(22px)",
           transition: "opacity 0.8s ease 0.15s, transform 0.8s ease 0.15s",
         }}>
           {/* Pipeline animation (top) */}
-          <Box sx={{ width: { md: 360, lg: 440 } }}>
+          <Box sx={{ width: { xs: "100%", md: 360, lg: 440 }, maxWidth: 440 }}>
             <PipelineFlow
               dataColor={isDark ? "#fbbf24" : "#93c5fd"}
               modelColor={accent}
               labelColor={textMuted}
-              height={200}
+              height={isSmall ? 160 : 200}
             />
           </Box>
 
-          {/* Photo in hex frame (below) */}
-          <Box className="hex-container">
-            <svg className="hex-svg" viewBox="0 0 260 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="130,8 238,70 238,210 130,272 22,210 22,70"
-                stroke={hexStroke} strokeWidth="1" strokeDasharray="6 4" fill="none" />
-              <polygon points="130,30 214,78 214,202 130,250 46,202 46,78"
-                stroke={hexInner} strokeWidth="1" fill={hexFill} />
-              <circle cx="130" cy="140" r="92"
-                stroke={hexRing} strokeWidth="1" strokeDasharray="10 7" fill="none">
-                <animateTransform attributeName="transform" type="rotate"
-                  from="0 130 140" to="360 130 140" dur="22s" repeatCount="indefinite" />
-              </circle>
-              <circle cx="130" cy="140" r="64" fill={hexGlow} />
-              {ticks.map(([x1, y1, x2, y2], i) => (
-                <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-                  stroke={accent} strokeWidth="1.5" opacity="0.55" />
-              ))}
-            </svg>
+          {/* Photo in hex frame (below) — scaled down a little on phones */}
+          <Box sx={{
+            transform: { xs: "scale(0.85)", sm: "none" },
+            transformOrigin: "top center",
+            mb: { xs: -4, sm: 0 },   // removes the empty space left by scaling
+          }}>
+            <Box className="hex-container">
+              <svg className="hex-svg" viewBox="0 0 260 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="130,8 238,70 238,210 130,272 22,210 22,70"
+                  stroke={hexStroke} strokeWidth="1" strokeDasharray="6 4" fill="none" />
+                <polygon points="130,30 214,78 214,202 130,250 46,202 46,78"
+                  stroke={hexInner} strokeWidth="1" fill={hexFill} />
+                <circle cx="130" cy="140" r="92"
+                  stroke={hexRing} strokeWidth="1" strokeDasharray="10 7" fill="none">
+                  <animateTransform attributeName="transform" type="rotate"
+                    from="0 130 140" to="360 130 140" dur="22s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="130" cy="140" r="64" fill={hexGlow} />
+                {ticks.map(([x1, y1, x2, y2], i) => (
+                  <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+                    stroke={accent} strokeWidth="1.5" opacity="0.55" />
+                ))}
+              </svg>
 
-            <Box component="img" src="./images/cvPhoto.jpg" alt="Abhishek Reddy"
-              sx={{
-                position: "absolute", top: "50%", left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 160, height: 160, borderRadius: "50%", objectFit: "cover",
-                border: `2.5px solid ${photoBorder}`, zIndex: 3,
-              }} />
-
-            {[
-              { top: "0px", left: "50%", transform: "translateX(-50%)", delay: "0s", size: 9, opacity: 0.75 },
-              { bottom: "0px", left: "50%", transform: "translateX(-50%)", delay: "0.7s", size: 7, opacity: 0.4 },
-              { top: "50%", right: "-2px", transform: "translateY(-50%)", delay: "1.4s", size: 6, opacity: 0.35 },
-            ].map((s, i) => (
-              <Box key={i} sx={{
-                position: "absolute", width: s.size, height: s.size,
-                borderRadius: "50%", background: accent, opacity: s.opacity,
-                animation: `blink-vertex 2.2s ${s.delay} ease-in-out infinite`, zIndex: 5,
-                top: s.top, bottom: (s as any).bottom,
-                left: s.left, right: (s as any).right, transform: s.transform,
-              }} />
-            ))}
-
-            {[
-              { label: "[ Data Engineer ]", style: { top: "-6px", right: "-48px" }, anim: "float-a 3.5s ease-in-out infinite" },
-              { label: "[ 4+ yrs exp ]", style: { bottom: "2px", left: "-52px" }, anim: "float-b 4.2s ease-in-out infinite" },
-            ].map(chip => (
-              <Box key={chip.label} className="hex-chip"
+              <Box component="img" src="./images/cvPhoto.jpg" alt="Abhishek Reddy"
                 sx={{
-                  ...chip.style,
-                  borderColor: isDark ? "rgba(0,255,180,0.22)" : "rgba(251,191,36,0.28)",
-                  background: chipBg, color: accent, animation: chip.anim,
-                }}>
-                {chip.label}
-              </Box>
-            ))}
+                  position: "absolute", top: "50%", left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: 160, height: 160, borderRadius: "50%", objectFit: "cover",
+                  border: `2.5px solid ${photoBorder}`, zIndex: 3,
+                }} />
+
+              {[
+                { top: "0px", left: "50%", transform: "translateX(-50%)", delay: "0s", size: 9, opacity: 0.75 },
+                { bottom: "0px", left: "50%", transform: "translateX(-50%)", delay: "0.7s", size: 7, opacity: 0.4 },
+                { top: "50%", right: "-2px", transform: "translateY(-50%)", delay: "1.4s", size: 6, opacity: 0.35 },
+              ].map((s, i) => (
+                <Box key={i} sx={{
+                  position: "absolute", width: s.size, height: s.size,
+                  borderRadius: "50%", background: accent, opacity: s.opacity,
+                  animation: `blink-vertex 2.2s ${s.delay} ease-in-out infinite`, zIndex: 5,
+                  top: s.top, bottom: (s as any).bottom,
+                  left: s.left, right: (s as any).right, transform: s.transform,
+                }} />
+              ))}
+
+              {/* chips sit closer to the frame on phones so they don't go off-screen */}
+              {[
+                { label: "[ Data Engineer ]", style: { top: "-6px", right: { xs: "-10px", sm: "-48px" } }, anim: "float-a 3.5s ease-in-out infinite" },
+                { label: "[ 4+ yrs exp ]", style: { bottom: "2px", left: { xs: "-10px", sm: "-52px" } }, anim: "float-b 4.2s ease-in-out infinite" },
+              ].map(chip => (
+                <Box key={chip.label} className="hex-chip"
+                  sx={{
+                    ...chip.style,
+                    borderColor: isDark ? "rgba(0,255,180,0.22)" : "rgba(251,191,36,0.28)",
+                    background: chipBg, color: accent, animation: chip.anim,
+                  }}>
+                  {chip.label}
+                </Box>
+              ))}
+            </Box>
           </Box>
         </Box>
       </Box>
